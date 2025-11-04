@@ -4,7 +4,7 @@ Ambiente simples para validar a landing page Black Days RZ VET com frontend em H
 
 ## Requisitos
 
-- Node.js 18 ou superior
+- Node.js 18 ou superior (Node 16 funciona caso o provedor OpenSSL legado nao esteja habilitado)
 - npm 9 ou superior
 
 ## Instalacao
@@ -42,10 +42,37 @@ Copie `.env.example` para `.env` e ajuste os valores:
 - `GOOGLE_APPS_SCRIPT_URL`: WebApp opcional para encaminhar o lead.
 - `GOOGLE_SHEETS_ID`: ID da planilha de destino.
 - `GOOGLE_SERVICE_ACCOUNT_EMAIL`: e-mail da service account com acesso a planilha.
-- `GOOGLE_PRIVATE_KEY`: chave privada da service account (use `\n` para as quebras de linha).
+- `GOOGLE_PRIVATE_KEY`: chave privada da service account.
+  - Em arquivos `.env`, mantenha tudo em uma unica linha usando `\n` para representar as quebras de linha.
+  - Em `docker-compose.yml`, prefira o bloco literal:
+    ```yaml
+    GOOGLE_PRIVATE_KEY: |-
+      -----BEGIN PRIVATE KEY-----
+      ...
+      -----END PRIVATE KEY-----
+    ```
 - `GOOGLE_SHEETS_TAB_NAME`: aba da planilha que recebera os dados (padrao `Leads`).
 
 Com campos Google vazios, a API continua funcionando apenas com o armazenamento local (`data/leads.json`). Use `npm run check:sheets` ou `GET /api/health` para conferir se a integracao esta ativa.
+
+### Timezone Sao Paulo
+
+A aplicacao normaliza todos os timestamps para `America/Sao_Paulo`. No backend (`getSaoPauloTimestamp`) isso ja esta habilitado. No Google Sheets a inicializacao do servico garante que a planilha esteja com o mesmo fuso (via `updateSpreadsheetProperties`). Nao e preciso acerto manual.
+
+### Docker e Node Options
+
+Quando executar em containers baseados em Node 18 ou superior, defina a variavel `NODE_OPTIONS=--openssl-legacy-provider` antes do processo iniciar (necessario por conta da lib do Google que ainda utiliza algoritmos marcados como legacy). Exemplo:
+
+```yaml
+services:
+  app:
+    build: .
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider
+      - GOOGLE_PRIVATE_KEY=${GOOGLE_PRIVATE_KEY}
+```
+
+Se preferir evitar a flag, utilize uma imagem Node 16 (sem suporte Long Term, mas ainda compativel com as dependencias).
 
 ## Testando o formulario
 
@@ -80,6 +107,27 @@ Com campos Google vazios, a API continua funcionando apenas com o armazenamento 
 - `GET /api/health`: status da aplicacao e da integracao com Google Sheets.
 - `GET /api/leads`: lista os leads armazenados localmente.
 - `POST /api/leads`: recebe `nome`, `email`, `telefone`, `atuacao` e `possui_clinica`; persiste localmente e replica para Sheets/Apps Script quando configurado.
+
+## Fluxo de deploy recomendado
+
+1. Crie um arquivo `.env` com as credenciais locais para desenvolvimento.
+2. Gere uma chave SSH e de acesso aos servidores/containers.
+3. Ajuste o `docker-compose.yml` (ou orquestrador equivalente) com:
+   - `GOOGLE_*` informados.
+   - `NODE_OPTIONS=--openssl-legacy-provider` (quando Node 18+).
+   - Volume para `data/` se quiser persistir leads e logs fora do container.
+4. Execute `docker compose up -d --build` (ou `npm start`) e teste com `npm run check:sheets`.
+5. Aponte o frontend (quando servido por CDN/aplicacao externa) para `https://<dominio>/api`.
+
+Logs importantes ficam em `data/sheets-debug.log`, `data/sheets-errors.log` e no stdout do processo Node (via Pino).
+
+## Troubleshooting
+
+- **ERR_OSSL_UNSUPPORTED**: defina `NODE_OPTIONS=--openssl-legacy-provider` antes do processo (ex.: via compose) ou rode em Node 16.
+- **Falha ao autenticar no Google Sheets**: confira se a service account tem permissao de edicao na planilha e se `GOOGLE_PRIVATE_KEY` esta com quebras corretas (`\n` no `.env` ou bloco literal no compose).
+- **Planilha com timezone incorreto**: ao inicializar o servico com credenciais validas a planilha passa a usar `America/Sao_Paulo`. Rode `npm run check:sheets` para forcar essa etapa.
+- **CORS bloqueando requisicoes**: ajuste `ALLOWED_ORIGIN` com a origem completa (`https://dominio.com`).
+- **Dados nao chegam ao Sheets mas estao em `data/leads.json`**: verifique `data/sheets-errors.log`. A fila de replicacao eh assinc; falhas temporarias sao reprocessadas ate 3 vezes.
 
 ## Proximos passos sugeridos
 
