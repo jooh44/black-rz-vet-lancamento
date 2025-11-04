@@ -1,0 +1,10 @@
+﻿node_modules
+.env
+npm-debug.log*
+.vscode/
+dist/
+.DS_Store
+coverage/
+data/leads.json
+data/sheets-debug.log
+data/sheets-errors.log

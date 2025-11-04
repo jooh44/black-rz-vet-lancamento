@@ -1,0 +1,27 @@
+{
+  "name": "black-friday-2025",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "test": "jest",
+    "check:sheets": "node server/scripts/checkSheets.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
+    "pino-pretty": "^11.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "googleapis": "^164.1.0",
+    "pino": "^9.4.0"
+  }
+}

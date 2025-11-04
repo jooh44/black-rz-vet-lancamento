@@ -1,0 +1,213 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Landing page Black Days RZ VET - lista de espera VIP." />
+    <title>Black Days RZ VET - Lista VIP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-header">
+        <div class="container header-layout">
+          <img src="/logo-rz-vet.png" alt="RZ VET" class="brand-logo" />
+          <span class="header-badge">Black Days 2025</span>
+        </div>
+      </header>
+
+      <main class="container main-content">
+        <section class="hero">
+          <div class="hero-lead">
+            <img src="/logo-rz-vet-alt.png" alt="RZ VET" class="hero-logo" />
+            <div class="countdown" data-target-date="2025-11-25T00:00:00-03:00" aria-live="polite">
+              <span class="countdown__title">Contagem para o Black Days</span>
+              <div class="countdown__grid">
+                <div class="countdown__unit">
+                  <span class="countdown__value" data-countdown-part="days">00</span>
+                  <span class="countdown__label">Dias</span>
+                </div>
+                <div class="countdown__unit">
+                  <span class="countdown__value" data-countdown-part="hours">00</span>
+                  <span class="countdown__label">Horas</span>
+                </div>
+                <div class="countdown__unit">
+                  <span class="countdown__value" data-countdown-part="minutes">00</span>
+                  <span class="countdown__label">Min</span>
+                </div>
+                <div class="countdown__unit">
+                  <span class="countdown__value" data-countdown-part="seconds">00</span>
+                  <span class="countdown__label">Seg</span>
+                </div>
+              </div>
+              <span class="countdown__hint">25 de novembro de 2025</span>
+            </div>
+          </div>
+          <h1 class="hero-title">
+            Garanta uma vaga na lista de espera da
+            <span class="hero-title__highlight">Black Days RZ VET.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Seja o primeiro a saber sobre os maiores descontos em equipamentos veterinários. Prepare sua clínica para a Black Days RZ VET e garanta acesso antecipado.
+          </p>
+          <div class="hero-highlights">
+            <div class="highlight-card">
+              <div class="highlight-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="presentation" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 2v4" />
+                  <path d="M16 2v4" />
+                  <rect width="18" height="18" x="3" y="4" rx="2" />
+                  <path d="M3 10h18" />
+                  <path d="m9 16 2 2 4-4" />
+                </svg>
+              </div>
+              <div class="highlight-copy">
+                <span class="highlight-emphasis">Até 50% OFF</span>
+                <span>em equipamentos selecionados</span>
+              </div>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="presentation" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+                </svg>
+              </div>
+              <div class="highlight-copy">
+                <span class="highlight-emphasis">Ofertas exclusivas</span>
+                <span>para clínicas e hospitais veterinários</span>
+              </div>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="presentation" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" />
+                </svg>
+              </div>
+              <div class="highlight-copy">
+                <span class="highlight-emphasis">Estoques limitados</span>
+                <span>e bônus para a lista VIP</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2 class="section-title">
+            <span class="section-title__highlight">Garanta sua vaga</span> na lista de espera
+          </h2>
+          <p class="section-subtitle">Preencha seus dados para receber os alertas de lançamento antes de todo mundo.</p>
+
+          <form id="form-waitlist" class="lead-form" method="post" autocomplete="on">
+            <div class="form-field">
+              <label for="nome">Nome completo</label>
+              <input id="nome" name="nome" type="text" required placeholder="Digite seu nome" />
+            </div>
+
+            <div class="form-field">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" required placeholder="Digite seu melhor e-mail" autocomplete="email" />
+            </div>
+
+            <div class="form-field">
+              <label for="telefone">Melhor telefone (WhatsApp)</label>
+              <input id="telefone" name="telefone" type="tel" required placeholder="(XX) XXXXX-XXXX" inputmode="tel" autocomplete="tel" />
+            </div>
+
+            <div class="form-field">
+              <label for="atuacao">Sua principal área de atuação</label>
+              <select id="atuacao" name="atuacao" required>
+                <option value="" disabled selected>Selecione sua área</option>
+                <option value="anestesia_intensivismo">Anestesia &amp; Intensivismo</option>
+                <option value="cirurgia">Cirurgia Geral &amp; Especializada</option>
+                <option value="imagem_monitoramento">Diagnóstico por Imagem &amp; Monitoramento</option>
+                <option value="clinica_geral">Clínica Médica / Atendimento Geral</option>
+                <option value="especialidades_internas">Especialidades Internas (Cardio, Onco, Dermato etc.)</option>
+                <option value="odontologia_oftalmologia">Odontologia &amp; Oftalmologia</option>
+                <option value="reabilitacao_fisioterapia">Reabilitação &amp; Fisioterapia</option>
+                <option value="animais_exoticos">Animais Não Convencionais / Exóticos</option>
+                <option value="gestao_compras">Gestão / Compras / Engenharia Clínica</option>
+                <option value="academico">Acadêmico (Estudante / Residente / Docente)</option>
+              </select>
+            </div>
+
+            <fieldset class="form-field radio-group">
+              <legend>Você possui clínica própria?</legend>
+              <label class="inline-option">
+                <input type="radio" id="clinica_sim" name="possui_clinica" value="sim" required />
+                <span>Sim</span>
+              </label>
+              <label class="inline-option">
+                <input type="radio" id="clinica_nao" name="possui_clinica" value="nao" />
+                <span>Não</span>
+              </label>
+            </fieldset>
+
+            <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
+
+            <button type="submit" class="submit-button">Quero entrar na lista VIP</button>
+          </form>
+        </section>
+      </main>
+
+      <section class="container preview-section">
+        <h2 class="section-title">O que esperar na Black Days RZ VET</h2>
+        <div class="preview-grid">
+          <article class="preview-card">
+            <div class="preview-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="presentation" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M15.5 8.5h.01" />
+                <path d="M8.5 15.5h.01" />
+                <path d="m15 15-6-6" />
+              </svg>
+            </div>
+            <h3>Equipamentos com descontos agressivos</h3>
+            <p>Garanta condições especiais em anestesia, diagnóstico por imagem, monitoramento e muito mais.</p>
+          </article>
+          <article class="preview-card">
+            <div class="preview-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="presentation" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="7" rx="2" />
+                <path d="M2 12h20" />
+                <path d="M12 7v14" />
+                <path d="M12 7V3.5" />
+                <path d="M12 7c-1.667-1.667-5-3-5-3a2 2 0 1 0 0 4h5" />
+                <path d="M12 7c1.667-1.667 5-3 5-3a2 2 0 1 1 0 4h-5" />
+              </svg>
+            </div>
+            <h3>Bônus exclusivos para a lista VIP</h3>
+            <p>Conte com brindes, manutenção estendida e treinamentos rápidos para sua equipe técnica.</p>
+          </article>
+          <article class="preview-card">
+            <div class="preview-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="presentation" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 1 1 18 0v6" />
+                <path d="M21 19a2 2 0 0 1-2 2h-1" />
+                <path d="M4 19a2 2 0 0 0 2 2h1" />
+                <path d="M18 13a3 3 0 0 0-3 3" />
+                <path d="M6 16a3 3 0 0 1 3-3" />
+                <path d="M12 21v-2" />
+              </svg>
+            </div>
+            <h3>Suporte especializado durante o evento</h3>
+            <p>Time RZ VET à disposição para esclarecer dúvidas e ajudar na escolha do melhor equipamento.</p>
+          </article>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <div class="container footer-layout">
+          <span>&copy; <span id="current-year"></span> RZ Equipamentos. Todos os direitos reservados.</span>
+          <a href="https://rzvet.com.br" target="_blank" rel="noreferrer">Visite rzvet.com.br</a>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
