@@ -89,7 +89,7 @@ iptables -t nat -A POSTROUTING -s 10.0.0.0/8   -o eth0 -j MASQUERADE   # se houv
 
 1. Execute `npm run dev`.
 2. Acesse `http://localhost:<PORT>`.
-3. Envie o formulario com dados de teste.
+  3. Envie o formulario com dados de teste (incluindo, se desejar, a seleção de produtos de interesse).
 4. Confira `http://localhost:<PORT>/api/leads` ou o arquivo `data/leads.json`.
 5. Com as credenciais do Google configuradas, acompanhe os logs em `data/sheets-debug.log` e `data/sheets-errors.log`.
 
@@ -118,6 +118,7 @@ iptables -t nat -A POSTROUTING -s 10.0.0.0/8   -o eth0 -j MASQUERADE   # se houv
 - `GET /api/health`: status da aplicacao e da integracao com Google Sheets.
 - `GET /api/leads`: lista os leads armazenados localmente.
 - `POST /api/leads`: recebe `nome`, `email`, `telefone`, `atuacao` e `possui_clinica`; persiste localmente e replica para Sheets/Apps Script quando configurado.
+  - Campos opcionais: `produtos_interesse` (array de slugs definidos no frontend) é convertido para texto e enviado à coluna **Produtos de interesse** na planilha.
 
 ## Fluxo de deploy recomendado
 
@@ -138,6 +139,7 @@ Logs importantes ficam em `data/sheets-debug.log`, `data/sheets-errors.log` e no
 - `curl https://<dominio>/api/health` deve retornar `"initialized": true` e sem `lastError`.
 - Dentro do container de produção: `docker exec <id> node server/scripts/checkSheets.js`.
 - Verifique `data/sheets-debug.log` (dentro do container) para confirmar a mensagem `Lead inserido com sucesso`.
+- Confira na planilha se a coluna **Produtos de interesse** recebe os itens selecionados (separados por `; `).
 - Envie um lead real de teste e confirme a chegada na aba configurada do Sheets; remova o registro em seguida.
 - Garanta que as regras de NAT estejam persistidas (`iptables-save` / `netfilter-persistent save`) para evitar perda após reboot.
 

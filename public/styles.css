@@ -361,32 +361,44 @@ a:focus-visible {
 }
 
 .radio-group {
-  position: relative;
-  border: 1px solid var(--border-soft);
-  border-radius: 18px;
-  background: rgba(11, 11, 13, 0.92);
-  padding: 1.5rem 1.2rem 1.1rem;
-  margin: 0;
-  display: grid;
-  gap: 0.8rem;
-}
-
+    position: relative;
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    background: rgba(11, 11, 13, 0.92);
+    padding: 1.5rem 1.2rem 1.1rem;
+    margin: 0;
+    display: grid;
+    gap: 0.8rem;
+  }
+  
 .radio-group legend {
-  position: absolute;
-  top: -0.7rem;
-  left: 1.2rem;
-  padding: 0 0.5rem;
-  background: rgba(11, 11, 13, 0.95);
-  font-size: 0.96rem;
-  font-weight: 600;
-  color: var(--text);
-  border-radius: 999px;
-}
+    position: absolute;
+    top: -0.7rem;
+    left: 1.2rem;
+    padding: 0 0.5rem;
+    background: rgba(11, 11, 13, 0.95);
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: var(--text);
+    border-radius: 999px;
+  }
 
-.form-field label,
-.form-field legend {
-  font-weight: 600;
-  font-size: 0.96rem;
+.field-hint {
+    font-size: 0.9rem;
+    color: rgba(226, 232, 240, 0.7);
+    margin: -0.25rem 0 0.6rem;
+  }
+
+.multi-option-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  .form-field label,
+  .form-field legend {
+    font-weight: 600;
+    font-size: 0.96rem;
   color: var(--text);
 }
 
@@ -460,10 +472,23 @@ a:focus-visible {
 
 .inline-option input:focus-visible + span,
 .inline-option input:hover + span {
-  border-color: rgba(248, 113, 113, 0.55);
-  color: var(--text);
-  transform: translateY(-1px);
-}
+    border-color: rgba(248, 113, 113, 0.55);
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+
+.inline-option input[type="checkbox"] + span {
+    justify-content: flex-start;
+    text-align: left;
+    padding: 0.95rem 1.1rem;
+    min-height: 3.6rem;
+  }
+
+.inline-option input[type="checkbox"]:checked + span::after {
+    content: "✓";
+    margin-left: auto;
+    font-weight: 600;
+  }
 
 .submit-button {
   border: none;
@@ -738,18 +763,22 @@ a:focus-visible {
 }
 
 @media (max-width: 720px) {
-  .main-content {
-    gap: 3rem;
-  }
+    .main-content {
+      gap: 3rem;
+    }
+  
+    .hero {
+      text-align: left;
+    }
+  
+    .hero-lead {
+      gap: 1.5rem;
+    }
 
-  .hero {
-    text-align: left;
+    .multi-option-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
-
-  .hero-lead {
-    gap: 1.5rem;
-  }
-}
 
 @media (max-width: 620px) {
   .countdown__grid {

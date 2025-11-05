@@ -4,7 +4,8 @@
 const {
   sanitizeEmail,
   mapAtuacaoValue,
-  mapPossuiClinica
+  mapPossuiClinica,
+  mapProdutosInteresse
 } = require("../server/utils/leadHelpers");
 
 describe("leadHelpers", () => {
@@ -39,6 +40,31 @@ describe("leadHelpers", () => {
 
     it("retorna 'Nao' quando valor esta vazio", () => {
       expect(mapPossuiClinica("")).toBe("Nao");
+    });
+  });
+
+  describe("mapProdutosInteresse", () => {
+    it("mapeia slug conhecido para o rotulo correspondente", () => {
+      expect(
+        mapProdutosInteresse(["monitores_diagnostico", "materiais_consumo"])
+      ).toEqual([
+        "Monitores & Diagnostico portátil",
+        "Materiais de consumo"
+      ]);
+    });
+
+    it("remove valores duplicados e preserva ordem", () => {
+      expect(
+        mapProdutosInteresse([
+          "materiais_consumo",
+          "MATERIAIS_CONSUMO",
+          "aparelhos_anestesia"
+        ])
+      ).toEqual(["Materiais de consumo", "Aparelhos de anestesia"]);
+    });
+
+    it("ignora valores vazios", () => {
+      expect(mapProdutosInteresse(["", null])).toEqual([]);
     });
   });
 });

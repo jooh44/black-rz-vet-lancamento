@@ -28,8 +28,39 @@ function mapPossuiClinica(value = "") {
   return value || "Nao";
 }
 
+function mapProdutosInteresse(values = []) {
+  if (!Array.isArray(values)) {
+    return [];
+  }
+
+  const mapping = {
+    monitores_diagnostico: "Monitores & Diagnostico portátil",
+    materiais_consumo: "Materiais de consumo",
+    aparelhos_anestesia: "Aparelhos de anestesia",
+    materiais_cirurgicos: "Materiais cirúrgicos",
+    produtos_animais_exoticos: "Produtos para animais exóticos",
+    pecas_reposicao_manutencao: "Peças de reposição & manutenção"
+  };
+
+  const seen = new Set();
+  const labels = [];
+
+  values.forEach((value) => {
+    const key = String(value || "").toLowerCase();
+    if (!key || seen.has(key)) return;
+    seen.add(key);
+    const label = mapping[key] || value || "";
+    if (label) {
+      labels.push(label);
+    }
+  });
+
+  return labels;
+}
+
 module.exports = {
   sanitizeEmail,
   mapAtuacaoValue,
-  mapPossuiClinica
+  mapPossuiClinica,
+  mapProdutosInteresse
 };
