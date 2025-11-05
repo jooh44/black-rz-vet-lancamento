@@ -74,6 +74,17 @@ services:
 
 Se preferir evitar a flag, utilize uma imagem Node 16 (sem suporte Long Term, mas ainda compativel com as dependencias).
 
+### Rede no Docker Swarm
+
+Se o projeto rodar em um cluster Swarm usando redes `overlay`, garanta que os containers consigam sair para a Internet (necessario para autenticar no Google APIs):
+
+```bash
+iptables -t nat -A POSTROUTING -s 172.18.0.0/16 -o eth0 -j MASQUERADE   # ajuste o CIDR conforme a rede overlay local
+iptables -t nat -A POSTROUTING -s 10.0.0.0/8   -o eth0 -j MASQUERADE   # se houver redes adicionais para os services
+```
+
+> 💡 Salve as regras com `netfilter-persistent save` (ou mecanismo equivalente) para sobreviver a reboot.
+
 ## Testando o formulario
 
 1. Execute `npm run dev`.
@@ -116,10 +127,19 @@ Se preferir evitar a flag, utilize uma imagem Node 16 (sem suporte Long Term, ma
    - `GOOGLE_*` informados.
    - `NODE_OPTIONS=--openssl-legacy-provider` (quando Node 18+).
    - Volume para `data/` se quiser persistir leads e logs fora do container.
-4. Execute `docker compose up -d --build` (ou `npm start`) e teste com `npm run check:sheets`.
+4. Ajuste as regras de NAT conforme explicado em [Rede no Docker Swarm](#rede-no-docker-swarm) quando estiver em Swarm.
+5. Execute `docker compose up -d --build` (ou `docker stack deploy` / `npm start`) e teste com `npm run check:sheets`.
 5. Aponte o frontend (quando servido por CDN/aplicacao externa) para `https://<dominio>/api`.
 
 Logs importantes ficam em `data/sheets-debug.log`, `data/sheets-errors.log` e no stdout do processo Node (via Pino).
+
+### Checklist pós-deploy
+
+- `curl https://<dominio>/api/health` deve retornar `"initialized": true` e sem `lastError`.
+- Dentro do container de produção: `docker exec <id> node server/scripts/checkSheets.js`.
+- Verifique `data/sheets-debug.log` (dentro do container) para confirmar a mensagem `Lead inserido com sucesso`.
+- Envie um lead real de teste e confirme a chegada na aba configurada do Sheets; remova o registro em seguida.
+- Garanta que as regras de NAT estejam persistidas (`iptables-save` / `netfilter-persistent save`) para evitar perda após reboot.
 
 ## Troubleshooting
 
