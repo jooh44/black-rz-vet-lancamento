@@ -7,6 +7,15 @@ const logger = require("../utils/logger");
 const { getSaoPauloTimestamp } = require("../utils/timezone");
 
 const DEFAULT_TIME_ZONE = "America/Sao_Paulo";
+const SHEET_HEADERS = [
+  "Timestamp",
+  "Nome",
+  "Email",
+  "Telefone",
+  "Área de atuação",
+  "Possui Clínica?",
+  "Produtos de interesse"
+];
 
 class AsyncQueue {
   constructor() {
@@ -140,7 +149,42 @@ function createGoogleSheetsService({ config, logFiles }) {
       }
     });
 
-    return spreadsheet;
+  return spreadsheet;
+}
+
+  async function ensureHeaderRow(client) {
+    if (!client) return;
+
+    try {
+      const response = await client.spreadsheets.values.get({
+        spreadsheetId,
+        range: `${worksheetName}!1:1`
+      });
+
+      const currentHeaders = response.data.values?.[0] || [];
+      const normalizedCurrent = currentHeaders.map((header) => (header || "").trim());
+      const needsUpdate =
+        normalizedCurrent.length !== SHEET_HEADERS.length ||
+        SHEET_HEADERS.some((header, index) => (normalizedCurrent[index] || "") !== header);
+
+      if (needsUpdate) {
+        await client.spreadsheets.values.update({
+          spreadsheetId,
+          range: `${worksheetName}!A1`,
+          valueInputOption: "RAW",
+          requestBody: {
+            values: [SHEET_HEADERS]
+          }
+        });
+
+        await appendToFile(
+          logFiles.debug,
+          `[${getSaoPauloTimestamp()}] Header da planilha sincronizado (${worksheetName}).`
+        );
+      }
+    } catch (error) {
+      logger.warn({ err: error }, "Falha ao sincronizar header da planilha.");
+    }
   }
 
   async function ensureSpreadsheetTimezone(client, currentTimeZone) {
@@ -192,6 +236,7 @@ function createGoogleSheetsService({ config, logFiles }) {
     try {
       const client = await ensureClient();
       const spreadsheet = await ensureWorksheetExists(client);
+      await ensureHeaderRow(client);
       const currentTimeZone = spreadsheet?.properties?.timeZone;
       await ensureSpreadsheetTimezone(client, currentTimeZone);
       state.initialized = true;
@@ -228,6 +273,12 @@ function createGoogleSheetsService({ config, logFiles }) {
     const timestamp = getSaoPauloTimestamp();
     const atuacaoFormatada = lead.atuacao_label || lead.atuacao || "";
     const possuiClinica = lead.possui_clinica_label ?? lead.possui_clinica ?? "";
+    const produtosInteresse =
+      Array.isArray(lead.produtos_interesse_labels) && lead.produtos_interesse_labels.length
+        ? lead.produtos_interesse_labels.join("; ")
+        : Array.isArray(lead.produtos_interesse) && lead.produtos_interesse.length
+        ? lead.produtos_interesse.join("; ")
+        : "";
 
     await client.spreadsheets.values.append({
       spreadsheetId,
@@ -242,7 +293,8 @@ function createGoogleSheetsService({ config, logFiles }) {
             lead.email,
             lead.telefone,
             atuacaoFormatada,
-            possuiClinica
+            possuiClinica,
+            produtosInteresse
           ]
         ]
       }

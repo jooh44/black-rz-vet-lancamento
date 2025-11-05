@@ -4,6 +4,9 @@ const submitButton = form?.querySelector('button[type="submit"]');
 const telefoneInput = form?.querySelector("#telefone");
 const currentYearEl = document.querySelector("#current-year");
 const customSelectInstances = new Set();
+const productInterestInputs = Array.from(
+  document.querySelectorAll("input[name=\"produtos_interesse\"]")
+);
 const countdownControllers = new WeakMap();
 
 const API_BASE_URL = window.API_BASE_URL ?? "/api";
@@ -485,6 +488,19 @@ function handlePhoneInput(event) {
   input.setSelectionRange(newCursor, newCursor);
 }
 
+function setProductInterestPressed(input) {
+  const label = input.closest(".inline-option");
+  if (!label) return;
+  label.setAttribute("aria-pressed", input.checked ? "true" : "false");
+}
+
+function setupProductInterestControls() {
+  productInterestInputs.forEach((input) => {
+    setProductInterestPressed(input);
+    input.addEventListener("change", () => setProductInterestPressed(input));
+  });
+}
+
 async function handleSubmit(event) {
   event.preventDefault();
   clearStatus();
@@ -497,6 +513,15 @@ async function handleSubmit(event) {
 
   const formData = new FormData(form);
   const payload = Object.fromEntries(formData.entries());
+  const produtosInteresse = Array.from(
+    new Set(formData.getAll("produtos_interesse").filter(Boolean))
+  );
+
+  if (produtosInteresse.length) {
+    payload.produtos_interesse = produtosInteresse;
+  } else {
+    delete payload.produtos_interesse;
+  }
 
   try {
     submitButton?.setAttribute("disabled", "true");
@@ -514,6 +539,9 @@ async function handleSubmit(event) {
 
     form.reset();
     updateSelectedSelects();
+    window.requestAnimationFrame(() => {
+      productInterestInputs.forEach(setProductInterestPressed);
+    });
     showStatus("Obrigado! Seu nome está na lista.", { isError: false });
   } catch (error) {
     console.error("Erro ao enviar lead", error);
@@ -554,4 +582,6 @@ const atuacaoSelect = document.querySelector("#atuacao");
 if (atuacaoSelect) {
   enhanceSelect(atuacaoSelect);
 }
+
+setupProductInterestControls();
 
