@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM node:20-bullseye-slim AS base
 
 ENV NODE_ENV=production
 ENV NODE_OPTIONS=--openssl-legacy-provider
@@ -6,7 +6,7 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm ci --omit=dev
 
 COPY public ./public
 COPY server ./server
