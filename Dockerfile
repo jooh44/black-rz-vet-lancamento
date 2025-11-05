@@ -6,7 +6,7 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-RUN npm ci --omit=dev
+COPY node_modules ./node_modules
 
 COPY public ./public
 COPY server ./server
