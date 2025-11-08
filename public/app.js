@@ -16,6 +16,31 @@ if (currentYearEl) {
   currentYearEl.textContent = new Date().getFullYear();
 }
 
+// Meta Pixel: Rastrear visualização do formulário
+let formViewed = false;
+if (typeof window.fbq !== "undefined") {
+  const formSection = document.querySelector(".form-section");
+  if (formSection) {
+    const formObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !formViewed) {
+            window.fbq("track", "ViewContent", {
+              content_name: "Formulário Black Days RZ VET",
+              content_category: "Lead Form",
+              content_type: "form"
+            });
+            formViewed = true;
+            formObserver.disconnect();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    formObserver.observe(formSection);
+  }
+}
+
 function showStatus(message, { isError = false } = {}) {
   if (!statusBox) return;
   statusBox.textContent = message;
@@ -535,6 +560,23 @@ async function handleSubmit(event) {
     if (!response.ok) {
       const { message } = await response.json().catch(() => ({ message: "Erro desconhecido" }));
       throw new Error(message || "Falha ao enviar. Tente novamente.");
+    }
+
+    // Meta Pixel: Rastrear conversão de Lead
+    if (typeof window.fbq !== "undefined") {
+      const interestCount = produtosInteresse.length || 1;
+      window.fbq("track", "Lead", {
+        content_name: "Black Days RZ VET 2025",
+        content_category: "Equipamentos Veterinários",
+        value: interestCount * 100,
+        currency: "BRL",
+        status: "completed"
+      });
+      
+      window.fbq("track", "CompleteRegistration", {
+        content_name: "Cadastro Lista VIP Black Days",
+        status: "completed"
+      });
     }
 
     form.reset();
