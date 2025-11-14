@@ -1,0 +1,37 @@
+{
+  "timestamp": "2025-11-14T07:45:32.678Z",
+  "metrics": {
+    "loadTime": 3333,
+    "dom": {
+      "domContentLoaded": 0,
+      "domComplete": 2818.4000000059605
+    },
+    "resources": {
+      "total": 0,
+      "css": 0,
+      "js": 0,
+      "images": 0,
+      "fonts": 0
+    },
+    "timing": {
+      "ttfb": 12.5,
+      "domInteractive": 2818.4000000059605,
+      "loadComplete": 2818.4000000059605
+    }
+  },
+  "issues": [
+    {
+      "severity": "high",
+      "issue": "Tempo de carregamento muito alto",
+      "value": "3333ms",
+      "recommendation": "Deve ser < 3000ms para boa experiência mobile"
+    }
+  ],
+  "recommendations": [
+    "Reduzir JavaScript inicial (code splitting, defer)",
+    "Adicionar will-change em elementos animados",
+    "Adicionar touch-action: manipulation em botões",
+    "Usar transform e opacity para animações (GPU)",
+    "Considerar IntersectionObserver para lazy load"
+  ]
+}

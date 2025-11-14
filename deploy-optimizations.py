@@ -77,7 +77,7 @@ def main():
         execute_command(client, f"cp -r {REMOTE_DIR}/public {BACKUP_DIR}/public-{datetime.now().strftime('%Y%m%d-%H%M%S')} || true")
         print(f"[OK] Backup criado em: {BACKUP_DIR}\n")
         
-        # 2. Upload de arquivos otimizados
+        # 2. Upload de arquivos otimizados (incluindo otimizações de performance)
         print("[*] Fazendo upload de arquivos otimizados...")
         files_to_upload = [
             (os.path.join("public", "index.html"), f"{REMOTE_DIR}/public/index.html"),
@@ -86,6 +86,7 @@ def main():
             (os.path.join("public", "promocoes.js"), f"{REMOTE_DIR}/public/promocoes.js"),
             (os.path.join("public", "styles.css"), f"{REMOTE_DIR}/public/styles.css"),
             (os.path.join("public", "data", "products.json"), f"{REMOTE_DIR}/public/data/products.json"),
+            (os.path.join("public", "data", "accessories.json"), f"{REMOTE_DIR}/public/data/accessories.json"),
             (os.path.join("public", "data", "banners.json"), f"{REMOTE_DIR}/public/data/banners.json"),
             (os.path.join("server", "app.js"), f"{REMOTE_DIR}/server/app.js"),
         ]

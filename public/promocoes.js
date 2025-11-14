@@ -5,21 +5,28 @@ const countdownControllers = new WeakMap();
 const COUNTDOWN_TIME_ZONE = "America/Sao_Paulo";
 
 // Função auxiliar para detectar mobile de forma mais confiável (definida no início)
+// Otimizada para performance - cache do resultado
+let mobileDeviceCache = null;
 function isMobileDevice() {
+  if (mobileDeviceCache !== null) return mobileDeviceCache;
   // Usar matchMedia como método principal (mais confiável)
   if (window.matchMedia && window.matchMedia("(max-width: 767px)").matches) {
+    mobileDeviceCache = true;
     return true;
   }
   // Fallback para window.innerWidth
   if (window.innerWidth && window.innerWidth < 768) {
+    mobileDeviceCache = true;
     return true;
   }
   // Fallback adicional para userAgent (útil em casos extremos)
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
   if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase())) {
     // Mas só retornar true se realmente for mobile (não tablet em modo desktop)
-    return window.innerWidth < 768;
+    mobileDeviceCache = window.innerWidth < 768;
+    return mobileDeviceCache;
   }
+  mobileDeviceCache = false;
   return false;
 }
 
@@ -572,6 +579,7 @@ async function loadProducts() {
     }
 
     // Rastrear visualização individual de produtos quando entram na viewport
+    // Otimizado: threshold menor para detectar mais cedo, rootMargin para pré-carregar
     const productObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -595,7 +603,7 @@ async function loadProducts() {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.1, rootMargin: "50px" }
     );
 
     // Observar cada card
@@ -719,6 +727,7 @@ async function loadAccessories() {
     }
 
     // Rastrear visualização individual de acessórios quando entram na viewport
+    // Otimizado: threshold menor para detectar mais cedo, rootMargin para pré-carregar
     const accessoryObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -742,7 +751,7 @@ async function loadAccessories() {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.1, rootMargin: "50px" }
     );
 
     // Observar cada card
@@ -1105,33 +1114,60 @@ function updateBannerImagesOnResize() {
   });
 }
 
-// Função de inicialização centralizada
+// Função de inicialização centralizada - Otimizada para performance
 function initializeApp() {
-  initializeCountdowns();
-  loadHeroBanners();
-  loadProducts();
-  loadAccessories();
+  // Usar requestIdleCallback para inicializações não críticas
+  const criticalInit = () => {
+    initializeCountdowns();
+    loadHeroBanners();
+  };
   
-  // Listener para redimensionamento com debounce
+  const nonCriticalInit = () => {
+    loadProducts();
+    loadAccessories();
+  };
+  
+  // Inicializações críticas imediatamente
+  criticalInit();
+  
+  // Inicializações não críticas quando o navegador estiver ocioso
+  if (window.requestIdleCallback) {
+    window.requestIdleCallback(nonCriticalInit, { timeout: 2000 });
+  } else {
+    // Fallback para navegadores sem suporte
+    setTimeout(nonCriticalInit, 100);
+  }
+  
+  // Listener para redimensionamento com debounce otimizado
   let resizeTimeout;
+  let isResizing = false;
   window.addEventListener("resize", () => {
+    if (!isResizing) {
+      isResizing = true;
+      requestAnimationFrame(() => {
+        isResizing = false;
+      });
+    }
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       updateBannerImagesOnResize();
-    }, 150);
+      // Invalidar cache de mobile device ao redimensionar
+      mobileDeviceCache = null;
+    }, 200);
   });
   
   // Listener adicional para mudança de orientação (importante para mobile)
   window.addEventListener("orientationchange", () => {
+    mobileDeviceCache = null; // Invalidar cache
     setTimeout(() => {
       updateBannerImagesOnResize();
     }, 200);
   });
 }
 
-// Inicializar quando o DOM estiver pronto
+// Inicializar quando o DOM estiver pronto - Otimizado
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initializeApp);
+  document.addEventListener("DOMContentLoaded", initializeApp, { once: true });
 } else {
   // DOM já está pronto, mas aguardar um frame para garantir que tudo está renderizado
   if (window.requestAnimationFrame) {
