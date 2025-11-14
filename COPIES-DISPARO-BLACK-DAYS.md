@@ -1,110 +1,139 @@
-﻿#  Copies para Disparo - Black Days RZ VET 2025
+﻿#  Copies para Disparo de LANÇAMENTO - Black Days RZ VET 2025
 
-##  OPÇÃO 1 - URGÊNCIA + EXCLUSIVIDADE
-**Assunto:**  Você está na LISTA VIP - Black Days RZ VET
-
-**Corpo:**
- **ACESSO EXCLUSIVO LIBERADO!**
-
-A Black Days RZ VET está chegando e você tem acesso VIP aos maiores descontos do ano em equipamentos veterinários.
-
- **O que te espera:**
- Descontos de até 50% em monitores e equipamentos
- Condições especiais de pagamento
- Estoque prioritário para lista VIP
- Acesso antecipado às promoções
-
- **COMEÇA EM:** 21 de novembro
-
- **[GARANTIR MINHA VAGA VIP]** 
-
-Não perca esta oportunidade única de equipar sua clínica com o melhor custo-benefício do ano!
+> **STATUS:** 🔴 CAMPANHA ATIVA - Lançamento em andamento (14/11/2025)
 
 ---
 
-##  OPÇÃO 2 - FOCO EM ECONOMIA
-**Assunto:**  Economize até R$ 15.000 na Black Days RZ VET
+##  OPÇÃO 1 - LANÇAMENTO OFICIAL (PRINCIPAL)
+**Assunto:** 🎉 BLACK DAYS RZ VET 2025 ESTÁ NO AR! Aproveite AGORA
 
 **Corpo:**
-**Prepare seu orçamento!** 
+🔥 **A ESPERA ACABOU!** 🔥
 
-A maior Black Friday de equipamentos veterinários do Brasil está chegando e os descontos vão surpreender você.
+A BLACK DAYS RZ VET 2025 JÁ COMEÇOU e os descontos estão INSANOS!
 
- **Vantagens da Lista VIP:**
- Acesso 24h antes do público geral
- Até 50% OFF em equipamentos premium
- Parcelamento facilitado
- Frete grátis para todo Brasil*
+🎯 **PROMOÇÕES ATIVAS AGORA:**
+✅ Até 50% OFF em Monitores Multiparamétricos
+✅ Aparelhos de Anestesia com desconto HISTÓRICO
+✅ Equipamentos completos com preços IMPERDÍVEIS
+✅ Parcelamento facilitado em até 12x
+✅ Frete GRÁTIS para todo Brasil*
 
- **Início:** 21 de novembro às 00h
+⚡ **CORRE! Estoque LIMITADO**
 
- **[QUERO ENTRAR NA LISTA VIP]** 
+Alguns produtos já estão com estoque baixo. Quanto mais cedo você escolher, mais opções terá!
 
-*Sua clínica merece os melhores equipamentos pelo melhor preço.*
+👉 **[VER TODAS AS PROMOÇÕES]** 👈
+
+📱 Navegue, escolha e aproveite. Não deixe para depois!
+
+*Válido para compras acima de R$ 500
 
 ---
 
-##  OPÇÃO 3 - ESCASSEZ + AÇÃO IMEDIATA
-**Assunto:**  ÚLTIMAS VAGAS - Lista VIP Black Days
+##  OPÇÃO 2 - URGÊNCIA DE ESTOQUE
+**Assunto:** ⚠️ CORRE! Alguns produtos já estão acabando - Black Days RZ VET
 
 **Corpo:**
- **ATENÇÃO VETERINÁRIO(A)!**
+⚠️ **ALERTA DE ESTOQUE!** ⚠️
 
-As vagas para a Lista VIP da Black Days RZ VET estão acabando RÁPIDO.
+A Black Days RZ VET começou há poucas horas e alguns equipamentos JÁ ESTÃO ACABANDO!
 
- **Por que garantir sua vaga AGORA:**
- Acesso antecipado às melhores ofertas
- Produtos com desconto podem ESGOTAR
- Condições exclusivas que não se repetem
- Sem filas, sem espera, sem frustração
+🔥 **PRODUTOS COM ESTOQUE CRÍTICO:**
+• Monitores Multiparamétricos - Restam poucas unidades
+• Aparelhos de Anestesia Premium - Vendendo RÁPIDO
+• Kits completos - Estoque LIMITADO
 
- **RESTAM POUCAS VAGAS**
+💰 **Descontos de até 50% OFF**
+📦 **Frete GRÁTIS para todo Brasil*
 
-21 de novembro - A contagem regressiva já começou!
+⏰ **NÃO DÁ PRA ESPERAR!**
 
- **[GARANTIR MINHA VAGA AGORA]** 
+Enquanto você lê isso, outros veterinários já estão garantindo os equipamentos. 
 
-Não deixe para última hora. Quem entra primeiro, escolhe primeiro!
+👉 **[APROVEITAR AGORA ANTES QUE ACABE]** 👈
+
+*Válido para compras acima de R$ 500. Promoções válidas enquanto durarem os estoques.
 
 ---
 
-##  OPÇÃO 4 - SOCIAL PROOF + BENEFÍCIOS
-**Assunto:**  +500 veterinários já garantiram vaga VIP
+##  OPÇÃO 3 - BENEFÍCIOS + FACILIDADES
+**Assunto:** 💳 Até 12x SEM JUROS + Frete GRÁTIS | Black Days RZ VET
 
 **Corpo:**
-**A comunidade veterinária está se mobilizando!** 
+💰 **AS MELHORES CONDIÇÕES DO ANO!** 💰
 
-Mais de 500 profissionais já garantiram acesso prioritário à Black Days RZ VET 2025.
+Black Days RZ VET: Além dos descontos incríveis, temos as facilidades que você precisa!
 
- **Benefícios confirmados:**
- Monitores multiparamétricos até 45% OFF
- Aparelhos de anestesia com desconto histórico
- Kits completos com preços imperdíveis
- Suporte técnico especializado
+🎁 **SUPER COMBO DE VANTAGENS:**
 
- **BÔNUS ESPECIAL:** Quem entrar na lista até amanhã concorre a um brinde exclusivo!
+✓ Descontos de ATÉ 50% OFF
+✓ Parcelamento em até 12x SEM JUROS
+✓ Frete GRÁTIS para todo Brasil*
+✓ Garantia estendida em produtos selecionados
+✓ Suporte técnico especializado
 
- **Black Days:** 21 de novembro
+🏥 **Equipe sua clínica AGORA e pague com tranquilidade!**
 
- **[SIM, QUERO FAZER PARTE]** 
+Monitores, aparelhos de anestesia, oxímetros e muito mais com condições que não se repetem.
 
-Junte-se aos veterinários que já estão preparados para as melhores ofertas do ano!
+👉 **[ESCOLHER MEUS EQUIPAMENTOS]** 👈
+
+📞 Dúvidas? Nossa equipe está online para te ajudar!
+
+*Consulte condições no site
+
+---
+
+##  OPÇÃO 4 - PRODUTOS ESPECÍFICOS EM DESTAQUE
+**Assunto:** 🔥 MONITOR MULTIPARAMÉTRICO 45% OFF - Por tempo limitado!
+
+**Corpo:**
+🎯 **OFERTA RELÂMPAGO ATIVA!**
+
+O equipamento mais desejado pelos veterinários está com desconto IMPERDÍVEL na Black Days RZ VET!
+
+📺 **MONITOR MULTIPARAMÉTRICO**
+~~R$ 8.999~~ → **R$ 4.949** (45% OFF)
+
+✨ **Especificações:**
+• ECG, SpO2, PNI, Temperatura, Respiração
+• Tela colorida de alta definição
+• Alarmes configuráveis
+• 12 meses de garantia
+
+💳 Em até 12x de R$ 412,42 sem juros
+
+🚚 Frete GRÁTIS + Entrega rápida
+
+⚡ **ESTOQUE LIMITADÍSSIMO!**
+
+Esta é a MELHOR oportunidade do ano para ter um monitor profissional na sua clínica.
+
+👉 **[GARANTIR MEU MONITOR AGORA]** 👈
+
+Não deixe passar. Quando acabar, só no ano que vem!
 
 ---
 
 ##  OPÇÃO 5 - CURTA E DIRETA (Para WhatsApp)
- **BLACK DAYS RZ VET** 
+🔴 **BLACK DAYS RZ VET COMEÇOU!** 🔴
 
-21 de Novembro - Descontos de até 50%
+Até 50% OFF em equipamentos veterinários!
 
-Entre na Lista VIP e tenha:
- Acesso antecipado
- Melhores condições
- Estoque prioritário
+✅ Monitores
+✅ Anestesia
+✅ Oxímetros
+✅ E muito mais
 
- **[QUERO MINHA VAGA VIP]** 
+💳 12x sem juros
+🚚 Frete GRÁTIS*
 
-Não perca! 
+⚡ ESTOQUE LIMITADO!
+
+👉 **[VER PROMOÇÕES]** 👈
+
+Aproveita que tá no ar! 🔥 
 
 ---
 
@@ -153,16 +182,18 @@ Não perca!
 - Terça a Quinta: 10h-11h ou 15h-16h
 - Evite Segunda de manhã e Sexta tarde
 
-**Frequência:**
-- 1º disparo: 7 dias antes (14/nov)
-- 2º disparo: 3 dias antes (18/nov)
-- 3º disparo: 1 dia antes (20/nov)
-- 4º disparo: No dia (21/nov - 00h)
+**Frequência (CAMPANHA ATIVA):**
+- ✅ 1º disparo: AGORA - Lançamento oficial (Opção 1)
+- 🕐 2º disparo: +3 horas - Urgência de estoque (Opção 2)
+- 🕐 3º disparo: +6 horas - Produtos em destaque (Opção 4)
+- 🕐 4º disparo: Amanhã 10h - Facilidades de pagamento (Opção 3)
+- 🕐 5º disparo: Amanhã 18h - Último aviso (adaptar Opção 2)
 
-**Segmentação:**
-- Veterinários que já compraram: Opção 4 (social proof)
-- Leads novos: Opção 1 (exclusividade)
-- Indecisos: Opção 3 (escassez)
+**Segmentação PARA LANÇAMENTO:**
+- Lista completa: Opção 1 (lançamento oficial)
+- Interessados em monitores: Opção 4 (produto específico)
+- Indecisos/preço: Opção 3 (facilidades)
+- WhatsApp/urgência: Opção 5 (curta e direta)
 
 ---
 
