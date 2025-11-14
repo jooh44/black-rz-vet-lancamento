@@ -141,20 +141,30 @@ def main():
         
         # 4. Copiar arquivos para diretório do PM2 (se diferente)
         print("[*] Verificando diretorio do PM2...")
-        pm2_info = execute_command(client, "pm2 info black-friday-rz-vet 2>/dev/null | grep 'exec cwd' | awk '{print $4}' || echo ''")
-        if pm2_info and pm2_info.strip() and pm2_info.strip() != REMOTE_DIR:
-            pm2_dir = pm2_info.strip()
+        pm2_info = execute_command(client, "pm2 info black-friday-rz-vet 2>/dev/null | grep 'exec cwd'")
+        pm2_dir = None
+        if pm2_info:
+            # Extrair caminho do output (formato: "│ exec cwd          │ /root/black-rz-vet                            │")
+            import re
+            match = re.search(r'│\s+exec cwd\s+│\s+([^\s│]+)', pm2_info)
+            if match:
+                pm2_dir = match.group(1).strip()
+        
+        if pm2_dir and pm2_dir != REMOTE_DIR:
             print(f"[*] PM2 rodando de {pm2_dir}, copiando arquivos...")
             # Copiar arquivos atualizados
             execute_command(client, f"cp {REMOTE_DIR}/server/app.js {pm2_dir}/server/app.js")
             execute_command(client, f"cp -r {REMOTE_DIR}/public/products-images {pm2_dir}/public/")
             execute_command(client, f"cp {REMOTE_DIR}/public/data/products.json {pm2_dir}/public/data/products.json")
+            execute_command(client, f"cp {REMOTE_DIR}/public/data/banners.json {pm2_dir}/public/data/banners.json")
             execute_command(client, f"cp {REMOTE_DIR}/public/index.html {pm2_dir}/public/index.html")
             execute_command(client, f"cp {REMOTE_DIR}/public/promocoes.html {pm2_dir}/public/promocoes.html")
             execute_command(client, f"cp {REMOTE_DIR}/public/promocoes.js {pm2_dir}/public/promocoes.js")
             execute_command(client, f"cp {REMOTE_DIR}/public/app.js {pm2_dir}/public/app.js")
             execute_command(client, f"cp {REMOTE_DIR}/public/styles.css {pm2_dir}/public/styles.css")
             print("[OK] Arquivos copiados para diretorio do PM2")
+        else:
+            print("[INFO] PM2 nao encontrado ou usando mesmo diretorio")
         
         # 5. Reiniciar servidor Node.js (se estiver rodando via PM2 ou systemd)
         print("[*] Verificando servidor Node.js...")
