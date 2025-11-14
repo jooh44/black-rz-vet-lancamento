@@ -1991,6 +1991,93 @@ a:focus-visible {
   }
 }
 
+/* ===== WHATSAPP FLOATING BUTTON ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.95) 0%, rgba(153, 27, 27, 0.95) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4), 0 0 20px rgba(248, 113, 113, 0.3);
+  z-index: 1000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  text-decoration: none;
+  border: 2px solid rgba(248, 113, 113, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 32px rgba(220, 38, 38, 0.5), 0 0 30px rgba(248, 113, 113, 0.4);
+  background: linear-gradient(135deg, rgba(220, 38, 38, 1) 0%, rgba(153, 27, 27, 1) 100%);
+  outline: none;
+}
+
+.whatsapp-float:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.whatsapp-float__icon {
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+  fill: currentColor;
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    width: 56px;
+    height: 56px;
+    bottom: 5rem; /* Acima da barra de navegação mobile */
+    right: 1rem;
+  }
+
+  .whatsapp-float__icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-float {
+    width: 52px;
+    height: 52px;
+    bottom: 4.5rem;
+    right: 0.75rem;
+  }
+
+  .whatsapp-float__icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Animação de pulso suave */
+@keyframes whatsapp-pulse {
+  0%, 100% {
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4), 0 0 20px rgba(248, 113, 113, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.5), 0 0 30px rgba(248, 113, 113, 0.4);
+  }
+}
+
+.whatsapp-float {
+  animation: whatsapp-pulse 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float {
+    animation: none;
+  }
+}
+
 
 
 
