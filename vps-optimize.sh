@@ -136,3 +136,5 @@ echo "🔍 Verificar status: systemctl status nginx"
 echo "📊 Monitorar logs: tail -f /var/log/nginx/access.log"
 
 
+
+
