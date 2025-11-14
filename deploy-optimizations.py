@@ -85,12 +85,30 @@ def main():
             (os.path.join("public", "app.js"), f"{REMOTE_DIR}/public/app.js"),
             (os.path.join("public", "promocoes.js"), f"{REMOTE_DIR}/public/promocoes.js"),
             (os.path.join("public", "styles.css"), f"{REMOTE_DIR}/public/styles.css"),
+            (os.path.join("public", "data", "products.json"), f"{REMOTE_DIR}/public/data/products.json"),
+            (os.path.join("public", "data", "banners.json"), f"{REMOTE_DIR}/public/data/banners.json"),
             (os.path.join("server", "app.js"), f"{REMOTE_DIR}/server/app.js"),
         ]
         
         # Garantir que os diretórios remotos existem
         execute_command(client, f"mkdir -p {REMOTE_DIR}/public")
+        execute_command(client, f"mkdir -p {REMOTE_DIR}/public/data")
+        execute_command(client, f"mkdir -p {REMOTE_DIR}/public/products-images/Equipamentos")
+        execute_command(client, f"mkdir -p {REMOTE_DIR}/public/products-images/Insumos")
         execute_command(client, f"mkdir -p {REMOTE_DIR}/server")
+        
+        # Upload de imagens otimizadas
+        print("[*] Fazendo upload de imagens otimizadas...")
+        import glob
+        image_patterns = [
+            ("public/products-images/Equipamentos/*.webp", f"{REMOTE_DIR}/public/products-images/Equipamentos/"),
+            ("public/products-images/Insumos/*.webp", f"{REMOTE_DIR}/public/products-images/Insumos/"),
+        ]
+        
+        for pattern, remote_dir in image_patterns:
+            for local_img in glob.glob(pattern):
+                remote_img = os.path.join(remote_dir, os.path.basename(local_img)).replace("\\", "/")
+                upload_file(client, local_img, remote_img)
         
         for local, remote in files_to_upload:
             local_path = os.path.join(script_dir, local)
