@@ -445,6 +445,7 @@ function createProductCard(product, isAccessory = false) {
         decoding="async"
         width="400"
         height="300"
+        fetchpriority="auto"
       />
       <div class="product-card__image-placeholder" style="display: none;" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -514,11 +515,50 @@ async function loadProducts() {
     // Limpar grid
     productsGrid.innerHTML = "";
 
-    // Renderizar cada produto
-    availableProducts.forEach((product) => {
+    // Renderizar produtos de forma otimizada (batch rendering)
+    // Renderizar primeiros cards imediatamente, resto com lazy loading
+    const initialBatchSize = 6; // Primeiros 6 cards visíveis
+    const batchSize = 4; // Renderizar de 4 em 4
+    
+    // Renderizar primeiro batch imediatamente
+    const initialProducts = availableProducts.slice(0, initialBatchSize);
+    initialProducts.forEach((product) => {
       const card = createProductCard(product, false);
       productsGrid.appendChild(card);
     });
+
+    // Renderizar resto progressivamente usando requestAnimationFrame
+    const remainingProducts = availableProducts.slice(initialBatchSize);
+    let currentIndex = 0;
+
+    function renderNextBatch() {
+      const batch = remainingProducts.slice(currentIndex, currentIndex + batchSize);
+      batch.forEach((product) => {
+        const card = createProductCard(product, false);
+        productsGrid.appendChild(card);
+      });
+      currentIndex += batchSize;
+
+      if (currentIndex < remainingProducts.length) {
+        // Usar requestIdleCallback se disponível, senão setTimeout
+        if (window.requestIdleCallback) {
+          window.requestIdleCallback(renderNextBatch, { timeout: 100 });
+        } else {
+          setTimeout(renderNextBatch, 0);
+        }
+      }
+    }
+
+    // Iniciar renderização do resto após primeiro frame
+    if (remainingProducts.length > 0) {
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(renderNextBatch, { timeout: 100 });
+      } else {
+        requestAnimationFrame(() => {
+          setTimeout(renderNextBatch, 0);
+        });
+      }
+    }
 
     // Meta Pixel: Rastrear visualização de produtos
     if (typeof window.fbq !== "undefined") {
@@ -625,11 +665,47 @@ async function loadAccessories() {
     // Limpar grid
     accessoriesGrid.innerHTML = "";
 
-    // Renderizar cada acessório (reutilizar createProductCard)
-    availableAccessories.forEach((accessory) => {
+    // Renderizar acessórios de forma otimizada (batch rendering)
+    const initialBatchSize = 6;
+    const batchSize = 4;
+    
+    // Renderizar primeiro batch imediatamente
+    const initialAccessories = availableAccessories.slice(0, initialBatchSize);
+    initialAccessories.forEach((accessory) => {
       const card = createProductCard(accessory, true);
       accessoriesGrid.appendChild(card);
     });
+
+    // Renderizar resto progressivamente
+    const remainingAccessories = availableAccessories.slice(initialBatchSize);
+    let currentIndex = 0;
+
+    function renderNextBatch() {
+      const batch = remainingAccessories.slice(currentIndex, currentIndex + batchSize);
+      batch.forEach((accessory) => {
+        const card = createProductCard(accessory, true);
+        accessoriesGrid.appendChild(card);
+      });
+      currentIndex += batchSize;
+
+      if (currentIndex < remainingAccessories.length) {
+        if (window.requestIdleCallback) {
+          window.requestIdleCallback(renderNextBatch, { timeout: 100 });
+        } else {
+          setTimeout(renderNextBatch, 0);
+        }
+      }
+    }
+
+    if (remainingAccessories.length > 0) {
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(renderNextBatch, { timeout: 100 });
+      } else {
+        requestAnimationFrame(() => {
+          setTimeout(renderNextBatch, 0);
+        });
+      }
+    }
 
     // Meta Pixel: Rastrear visualização de acessórios
     if (typeof window.fbq !== "undefined") {
@@ -849,6 +925,21 @@ function renderHeroCarousel(banners) {
           placeholder.style.display = "flex";
         }
       });
+      
+      // Preload da próxima imagem para transição suave
+      if (index === 0 && banners.length > 1) {
+        const nextBanner = banners[1];
+        const nextImageDesktop = nextBanner.imageDesktop || nextBanner.image;
+        const nextImageMobile = nextBanner.imageMobile || nextBanner.image;
+        const nextImageSrc = isMobileDevice() ? nextImageMobile : nextImageDesktop;
+        if (nextImageSrc) {
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.as = 'image';
+          link.href = nextImageSrc;
+          document.head.appendChild(link);
+        }
+      }
     }
 
     slidesContainer.appendChild(slide);

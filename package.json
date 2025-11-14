@@ -3,7 +3,12 @@
   "version": "1.1.0",
   "main": "server/index.js",
   "description": "Página de promoções Black Days RZ VET - Landing page com produtos em promoção",
-  "keywords": ["black-friday", "rz-vet", "promocoes", "veterinario"],
+  "keywords": [
+    "black-friday",
+    "rz-vet",
+    "promocoes",
+    "veterinario"
+  ],
   "author": "RZ Equipamentos",
   "license": "ISC",
   "repository": {
@@ -13,12 +18,17 @@
   "scripts": {
     "dev": "nodemon server/index.js",
     "start": "node server/index.js",
-    "test": "jest"
+    "test": "jest",
+    "test:playwright": "playwright test",
+    "test:playwright:ui": "playwright test --ui",
+    "test:playwright:vps": "playwright test tests/banners-mobile-vps.spec.js"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "jest": "^29.7.0",
     "nodemon": "^3.1.10",
-    "pino-pretty": "^11.2.2"
+    "pino-pretty": "^11.2.2",
+    "playwright": "^1.56.1"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
