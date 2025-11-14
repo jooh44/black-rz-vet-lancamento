@@ -441,9 +441,6 @@ function createProductCard(product, isAccessory = false, index = 0) {
     : "";
 
   const imagePath = getProductImagePath(product, isAccessory);
-  
-  // Primeiros 3 cards de cada seção usam eager loading para carregar imediatamente
-  const shouldEagerLoad = index < 3;
 
   card.innerHTML = `
     <div class="product-card__image-wrapper">
@@ -451,11 +448,11 @@ function createProductCard(product, isAccessory = false, index = 0) {
         src="${imagePath}" 
         alt="${product.name}" 
         class="product-card__image"
-        loading="${shouldEagerLoad ? 'eager' : 'lazy'}"
+        loading="eager"
         decoding="async"
         width="400"
         height="300"
-        fetchpriority="${shouldEagerLoad ? 'high' : 'auto'}"
+        fetchpriority="high"
       />
       <div class="product-card__image-placeholder" style="display: none;" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
