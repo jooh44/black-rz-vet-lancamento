@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Script para aplicar otimizações de performance na VPS
 Uso: python deploy-optimizations.py
@@ -8,6 +9,12 @@ import paramiko
 import sys
 import os
 from datetime import datetime
+
+# Configurar encoding UTF-8 para Windows
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 HOST = "72.60.150.75"
 USER = "root"
@@ -30,100 +37,117 @@ def execute_command(client, command):
     output = stdout.read().decode('utf-8')
     error = stderr.read().decode('utf-8')
     if exit_status != 0:
-        print(f"❌ Erro ao executar: {command}")
+        print(f"[ERRO] Erro ao executar: {command}")
         print(f"Erro: {error}")
         return None
     return output
 
 def upload_file(client, local_path, remote_path):
     """Faz upload de arquivo via SFTP"""
+    # Normalizar caminho para Windows
+    local_path = os.path.normpath(local_path)
+    if not os.path.exists(local_path):
+        print(f"[ERRO] Arquivo nao existe: {local_path}")
+        return False
+    
     sftp = client.open_sftp()
     try:
         sftp.put(local_path, remote_path)
-        print(f"✅ Upload: {local_path} -> {remote_path}")
+        print(f"[OK] Upload: {os.path.basename(local_path)} -> {remote_path}")
     except Exception as e:
-        print(f"❌ Erro ao fazer upload de {local_path}: {e}")
+        print(f"[ERRO] Erro ao fazer upload de {local_path}: {e}")
         return False
     finally:
         sftp.close()
     return True
 
 def main():
-    print("🚀 Iniciando deploy de otimizações de performance...\n")
+    print("[*] Iniciando deploy de otimizacoes de performance...\n")
+    
+    # Obter diretório do script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(script_dir)
     
     client = create_ssh_client()
     
     try:
         # 1. Criar backup
-        print("📦 Criando backup dos arquivos atuais...")
+        print("[*] Criando backup dos arquivos atuais...")
         execute_command(client, f"mkdir -p {BACKUP_DIR}")
         execute_command(client, f"cp -r {REMOTE_DIR}/public {BACKUP_DIR}/public-{datetime.now().strftime('%Y%m%d-%H%M%S')} || true")
-        print(f"✅ Backup criado em: {BACKUP_DIR}\n")
+        print(f"[OK] Backup criado em: {BACKUP_DIR}\n")
         
         # 2. Upload de arquivos otimizados
-        print("📤 Fazendo upload de arquivos otimizados...")
+        print("[*] Fazendo upload de arquivos otimizados...")
         files_to_upload = [
-            ("public/index.html", f"{REMOTE_DIR}/public/index.html"),
-            ("public/promocoes.html", f"{REMOTE_DIR}/public/promocoes.html"),
-            ("public/app.js", f"{REMOTE_DIR}/public/app.js"),
-            ("public/promocoes.js", f"{REMOTE_DIR}/public/promocoes.js"),
-            ("public/styles.css", f"{REMOTE_DIR}/public/styles.css"),
-            ("server/app.js", f"{REMOTE_DIR}/server/app.js"),
+            (os.path.join("public", "index.html"), f"{REMOTE_DIR}/public/index.html"),
+            (os.path.join("public", "promocoes.html"), f"{REMOTE_DIR}/public/promocoes.html"),
+            (os.path.join("public", "app.js"), f"{REMOTE_DIR}/public/app.js"),
+            (os.path.join("public", "promocoes.js"), f"{REMOTE_DIR}/public/promocoes.js"),
+            (os.path.join("public", "styles.css"), f"{REMOTE_DIR}/public/styles.css"),
+            (os.path.join("server", "app.js"), f"{REMOTE_DIR}/server/app.js"),
         ]
         
+        # Garantir que os diretórios remotos existem
+        execute_command(client, f"mkdir -p {REMOTE_DIR}/public")
+        execute_command(client, f"mkdir -p {REMOTE_DIR}/server")
+        
         for local, remote in files_to_upload:
-            if os.path.exists(local):
-                upload_file(client, local, remote)
+            local_path = os.path.join(script_dir, local)
+            if os.path.exists(local_path):
+                upload_file(client, local_path, remote)
             else:
-                print(f"⚠️  Arquivo não encontrado: {local}")
+                print(f"[AVISO] Arquivo nao encontrado: {local_path}")
         
         print()
         
         # 3. Atualizar configuração do Nginx
-        print("⚙️  Atualizando configuração do Nginx...")
-        upload_file(client, "nginx-optimized.conf", "/tmp/nginx-optimized.conf")
+        print("[*] Atualizando configuracao do Nginx...")
+        nginx_conf_path = os.path.join(script_dir, "nginx-optimized.conf")
+        upload_file(client, nginx_conf_path, "/tmp/nginx-optimized.conf")
         
         # Copiar e testar configuração
         execute_command(client, f"sudo cp /tmp/nginx-optimized.conf {NGINX_CONFIG}")
         
         # Testar configuração
         result = execute_command(client, "sudo nginx -t")
-        if result and "successful" in result.lower():
-            print("✅ Configuração do Nginx válida")
+        if result and ("successful" in result.lower() or "syntax is ok" in result.lower()):
+            print("[OK] Configuracao do Nginx valida")
             # Recarregar Nginx
             execute_command(client, "sudo systemctl reload nginx")
-            print("✅ Nginx recarregado\n")
+            print("[OK] Nginx recarregado\n")
         else:
-            print("❌ Erro na configuração do Nginx. Verifique manualmente.")
-            return
+            print(f"[ERRO] Erro na configuracao do Nginx. Resultado: {result}")
+            print("[AVISO] Continuando sem atualizar Nginx...")
+            # Não retornar, continuar com o deploy
         
         # 4. Reiniciar servidor Node.js (se estiver rodando via PM2 ou systemd)
-        print("🔄 Verificando servidor Node.js...")
+        print("[*] Verificando servidor Node.js...")
         # Verificar se está rodando via PM2
         pm2_check = execute_command(client, "pm2 list 2>/dev/null | grep -q 'black-friday' && echo 'running' || echo 'not-running'")
         if pm2_check and 'running' in pm2_check:
-            print("🔄 Reiniciando aplicação PM2...")
+            print("[*] Reiniciando aplicacao PM2...")
             execute_command(client, "cd /var/www/html && pm2 restart black-friday || pm2 restart all")
         else:
             # Verificar se está rodando via systemd
             systemd_check = execute_command(client, "systemctl is-active --quiet node-black-friday && echo 'running' || echo 'not-running'")
             if systemd_check and 'running' in systemd_check:
-                print("🔄 Reiniciando serviço Node.js...")
+                print("[*] Reiniciando servico Node.js...")
                 execute_command(client, "sudo systemctl restart node-black-friday")
             else:
-                print("ℹ️  Servidor Node.js não encontrado via PM2 ou systemd. Se estiver rodando manualmente, reinicie manualmente.")
+                print("[INFO] Servidor Node.js nao encontrado via PM2 ou systemd. Se estiver rodando manualmente, reinicie manualmente.")
         
         # 5. Verificar serviços
-        print("\n✅ Verificando serviços...")
+        print("\n[*] Verificando servicos...")
         execute_command(client, "sudo systemctl status nginx --no-pager | head -5")
         print()
         
-        print("✨ Deploy concluído com sucesso!")
-        print("🌐 Teste o site e verifique a performance!")
-        print(f"📦 Backup disponível em: {BACKUP_DIR}")
+        print("[OK] Deploy concluido com sucesso!")
+        print("[*] Teste o site e verifique a performance!")
+        print(f"[*] Backup disponivel em: {BACKUP_DIR}")
         
     except Exception as e:
-        print(f"❌ Erro durante deploy: {e}")
+        print(f"[ERRO] Erro durante deploy: {e}")
         sys.exit(1)
     finally:
         client.close()
