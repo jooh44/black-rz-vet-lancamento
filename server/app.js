@@ -11,6 +11,27 @@ function createServerApp() {
   const app = express();
   const publicDir = path.join(__dirname, "..", "public");
 
+  // Headers de performance para todos os arquivos estáticos
+  app.use((req, res, next) => {
+    // Cache para arquivos estáticos
+    if (req.path.match(/\.(jpg|jpeg|png|gif|ico|webp|svg|woff|woff2|ttf|eot)$/)) {
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      res.setHeader("Vary", "Accept-Encoding");
+    } else if (req.path.match(/\.(css|js)$/)) {
+      res.setHeader("Cache-Control", "public, max-age=2592000");
+      res.setHeader("Vary", "Accept-Encoding");
+    } else if (req.path.match(/\.(html|htm)$/)) {
+      res.setHeader("Cache-Control", "public, max-age=3600, must-revalidate");
+      res.setHeader("Vary", "Accept-Encoding");
+    }
+    
+    // Headers de segurança e performance
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("X-DNS-Prefetch-Control", "on");
+    
+    next();
+  });
+
   // Servir arquivos estáticos
   app.use(express.static(publicDir, { index: false }));
 

@@ -422,6 +422,9 @@ function createProductCard(product, isAccessory = false) {
         alt="${product.name}" 
         class="product-card__image"
         loading="lazy"
+        decoding="async"
+        width="400"
+        height="300"
       />
       <div class="product-card__image-placeholder" style="display: none;" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -755,6 +758,8 @@ function renderHeroCarousel(banners) {
           data-desktop="${imageDesktop}"
           data-mobile="${imageMobile}"
           loading="${index === 0 ? "eager" : "lazy"}"
+          decoding="async"
+          fetchpriority="${index === 0 ? "high" : "auto"}"
         />
         <div class="hero-carousel__slide-placeholder" style="display: none;" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
