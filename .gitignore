@@ -17,6 +17,13 @@ pnpm-debug.log*
 *.swo
 *~
 
+# BMAD (ferramentas de desenvolvimento)
+.bmad-core/
+.bmad-creative-writing/
+.bmad-infrastructure-devops/
+.cursor/rules/bmad/
+web-bundles/
+
 # Sistema operacional e arquivos temporários do usuário
 AppData/
 Desktop/
