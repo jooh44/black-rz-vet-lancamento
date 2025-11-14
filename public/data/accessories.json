@@ -1,0 +1,381 @@
+[
+  {
+    "id": "agulha-tuohy-16g-18g-90mm",
+    "name": "AGULHA TUOHY p/ Anestesia 16G X 90MM/18G X 90MM",
+    "slug": "agulha-tuohy-16g-18g-90mm",
+    "image": "/valores-black/acessorios/agulha-tuohy-16g-18g-90mm.webp",
+    "price_original": 14.36,
+    "price_promotional": 7.29,
+    "discount_percentage": 50,
+    "url": "https://www.rzvet.com.br/acessorios/agulha-peridural-para-anestesia-tuohy-16gx90mm-zor",
+    "specifications": [
+      "Tamanho: 16G/18G",
+      "Comprimento: 90MM",
+      "Para anestesia"
+    ],
+    "description": "Agulha Tuohy para anestesia veterinária",
+    "category": "agulhas",
+    "available": true
+  },
+  {
+    "id": "agulha-tuohy-20g-90mm",
+    "name": "AGULHA TUOHY p/ Anestesia 20G X 90MM",
+    "slug": "agulha-tuohy-20g-90mm",
+    "image": "/valores-black/acessorios/agulha-tuohy-20g-90mm.webp",
+    "price_original": 56.73,
+    "price_promotional": 34.04,
+    "discount_percentage": 40,
+    "url": "https://www.rzvet.com.br/agulha-peridural-para-anestesia-tuohy-20gx90mm-zor",
+    "specifications": [
+      "Tamanho: 20G",
+      "Comprimento: 90MM",
+      "Para anestesia"
+    ],
+    "description": "Agulha Tuohy para anestesia veterinária",
+    "category": "agulhas",
+    "available": true
+  },
+  {
+    "id": "agulha-tuohy-20g-50mm",
+    "name": "AGULHA TUOHY p/ Anestesia 20G X 50MM",
+    "slug": "agulha-tuohy-20g-50mm",
+    "image": "/valores-black/acessorios/agulha-tuohy-20g-50mm.webp",
+    "price_original": 57.3,
+    "price_promotional": 34.38,
+    "discount_percentage": 40,
+    "url": "https://www.rzvet.com.br/agulha-peridural-para-anestesia-tuohy-20gx50mm-rzvet",
+    "specifications": [
+      "Tamanho: 20G",
+      "Comprimento: 50MM",
+      "Para anestesia"
+    ],
+    "description": "Agulha Tuohy para anestesia veterinária",
+    "category": "agulhas",
+    "available": true
+  },
+  {
+    "id": "agulha-tuohy-22g-50mm",
+    "name": "AGULHA TUOHY p/ Anestesia 22G X 50MM",
+    "slug": "agulha-tuohy-22g-50mm",
+    "image": "/valores-black/acessorios/agulha-tuohy-22g-50mm.webp",
+    "price_original": 60.16,
+    "price_promotional": 36.1,
+    "discount_percentage": 40,
+    "url": "https://www.rzvet.com.br/agulha-peridural-para-anestesia-tuohy-22gx50mm-rzvet",
+    "specifications": [
+      "Tamanho: 22G",
+      "Comprimento: 50MM",
+      "Para anestesia"
+    ],
+    "description": "Agulha Tuohy para anestesia veterinária",
+    "category": "agulhas",
+    "available": true
+  },
+  {
+    "id": "multi-injetor-linear-3-aplicadores",
+    "name": "MULTI INJETOR LINEAR 3 APLICADORES",
+    "slug": "multi-injetor-linear-3-aplicadores",
+    "image": "/valores-black/acessorios/multi-injetor-linear-3-aplicadores.webp",
+    "price_original": 189.0,
+    "price_promotional": 113.42,
+    "discount_percentage": 40,
+    "url": "https://www.rzvet.com.br/acessorios/multi-injetor-linear-para-mesoterapia-com-03-aplicadores",
+    "specifications": [
+      "3 aplicadores",
+      "Sistema linear",
+      "Multi-injetor"
+    ],
+    "description": "Multi injetor linear com 3 aplicadores",
+    "category": "instrumental",
+    "available": true
+  },
+  {
+    "id": "balao-latex-reinalacao-250ml",
+    "name": "BALÃO DE LÁTEX p/ Reinalação 250ML",
+    "slug": "balao-latex-reinalacao-250ml",
+    "image": "/valores-black/acessorios/balao-latex-reinalacao-250ml.webp",
+    "price_original": 52.5,
+    "price_promotional": 34.13,
+    "discount_percentage": 35,
+    "url": "https://www.rzvet.com.br/balao-de-anestesia-latex-borracha-250ml-500ml-1-litro-2-litros-e-3-litros?variant_id=625",
+    "specifications": [
+      "Capacidade: 250ML",
+      "Material: Látex",
+      "Para reinalação"
+    ],
+    "description": "Balão de látex para reinalação",
+    "category": "baloes",
+    "available": true
+  },
+  {
+    "id": "balao-latex-reinalacao-500ml",
+    "name": "BALÃO DE LÁTEX p/ Reinalação 500ML",
+    "slug": "balao-latex-reinalacao-500ml",
+    "image": "/valores-black/acessorios/balao-latex-reinalacao-500ml.webp",
+    "price_original": 27.2,
+    "price_promotional": 17.68,
+    "discount_percentage": 35,
+    "url": "https://www.rzvet.com.br/balao-de-anestesia-latex-borracha-250ml-500ml-1-litro-2-litros-e-3-litros?variant_id=625",
+    "specifications": [
+      "Capacidade: 500ML",
+      "Material: Látex",
+      "Para reinalação"
+    ],
+    "description": "Balão de látex para reinalação",
+    "category": "baloes",
+    "available": true
+  },
+  {
+    "id": "balao-latex-reinalacao-1litro",
+    "name": "BALÃO DE LÁTEX p/ Reinalação 1 LITRO",
+    "slug": "balao-latex-reinalacao-1litro",
+    "image": "/valores-black/acessorios/balao-latex-reinalacao-1litro.webp",
+    "price_original": 34.55,
+    "price_promotional": 22.46,
+    "discount_percentage": 35,
+    "url": "https://www.rzvet.com.br/balao-de-anestesia-latex-borracha-250ml-500ml-1-litro-2-litros-e-3-litros?variant_id=625",
+    "specifications": [
+      "Capacidade: 1 LITRO",
+      "Material: Látex",
+      "Para reinalação"
+    ],
+    "description": "Balão de látex para reinalação",
+    "category": "baloes",
+    "available": true
+  },
+  {
+    "id": "balao-latex-reinalacao-2litros",
+    "name": "BALÃO DE LÁTEX p/ Reinalação 2 LITROS",
+    "slug": "balao-latex-reinalacao-2litros",
+    "image": "/valores-black/acessorios/balao-latex-reinalacao-2litros.webp",
+    "price_original": 39.9,
+    "price_promotional": 25.94,
+    "discount_percentage": 35,
+    "url": "https://www.rzvet.com.br/balao-de-anestesia-latex-borracha-250ml-500ml-1-litro-2-litros-e-3-litros?variant_id=625",
+    "specifications": [
+      "Capacidade: 2 LITROS",
+      "Material: Látex",
+      "Para reinalação"
+    ],
+    "description": "Balão de látex para reinalação",
+    "category": "baloes",
+    "available": true
+  },
+  {
+    "id": "balao-latex-reinalacao-3litros",
+    "name": "BALÃO DE LÁTEX p/ Reinalação 3 LITROS",
+    "slug": "balao-latex-reinalacao-3litros",
+    "image": "/valores-black/acessorios/balao-latex-reinalacao-3litros.webp",
+    "price_original": 39.9,
+    "price_promotional": 28.67,
+    "discount_percentage": 35,
+    "url": "https://www.rzvet.com.br/balao-de-anestesia-latex-borracha-250ml-500ml-1-litro-2-litros-e-3-litros?variant_id=625",
+    "specifications": [
+      "Capacidade: 3 LITROS",
+      "Material: Látex",
+      "Para reinalação"
+    ],
+    "description": "Balão de látex para reinalação",
+    "category": "baloes",
+    "available": true
+  },
+  {
+    "id": "agulha-tuohy-17g-90mm",
+    "name": "AGULHA TUOHY p/ Anestesia 17G X 90MM",
+    "slug": "agulha-tuohy-17g-90mm",
+    "image": "/valores-black/acessorios/agulha-tuohy-17g-90mm.webp",
+    "price_original": 13.68,
+    "price_promotional": 9.08,
+    "discount_percentage": 34,
+    "url": "https://www.rzvet.com.br/agulha-peridural-para-anestesia-tuohy-17gx90mm-procare-aatp17g",
+    "specifications": [
+      "Tamanho: 17G",
+      "Comprimento: 90MM",
+      "Para anestesia"
+    ],
+    "description": "Agulha Tuohy para anestesia veterinária",
+    "category": "agulhas",
+    "available": true
+  },
+  {
+    "id": "agulha-bloqueio-periferico-21g-100mm",
+    "name": "AGULHA BLOQUEIO Periférico 21G X 100MM",
+    "slug": "agulha-bloqueio-periferico-21g-100mm",
+    "image": "/valores-black/acessorios/agulha-bloqueio-periferico-21g-100mm.webp",
+    "price_original": 173.25,
+    "price_promotional": 120.0,
+    "discount_percentage": 31,
+    "url": "https://www.rzvet.com.br/agulha-para-bloqueio-periferico-para-neuroestimulador-21gx100mm",
+    "specifications": [
+      "Tamanho: 21G",
+      "Comprimento: 100MM",
+      "Para bloqueio periférico"
+    ],
+    "description": "Agulha para bloqueio periférico",
+    "category": "agulhas",
+    "available": true
+  },
+  {
+    "id": "agulha-bloqueio-periferico-22g-50mm",
+    "name": "AGULHA BLOQUEIO Periférico 22G X 50MM",
+    "slug": "agulha-bloqueio-periferico-22g-50mm",
+    "image": "/valores-black/acessorios/agulha-bloqueio-periferico-22g-50mm.webp",
+    "price_original": 173.25,
+    "price_promotional": 120.0,
+    "discount_percentage": 31,
+    "url": "https://www.rzvet.com.br/acessorios/agulhas-para-bloqueio/agulha-para-bloqueio-periferico-para-neuroestimulador-22gx50mm-zor",
+    "specifications": [
+      "Tamanho: 22G",
+      "Comprimento: 50MM",
+      "Para bloqueio periférico"
+    ],
+    "description": "Agulha para bloqueio periférico",
+    "category": "agulhas",
+    "available": true
+  },
+  {
+    "id": "cateter-venoso-central-4fr-5fr",
+    "name": "CATETER VENOSO CENTRAL 4FR/5FR",
+    "slug": "cateter-venoso-central-4fr-5fr",
+    "image": "/valores-black/acessorios/cateter-venoso-central-4fr-5fr.webp",
+    "price_original": 147.0,
+    "price_promotional": 102.9,
+    "discount_percentage": 30,
+    "url": "https://www.rzvet.com.br/cateter-venoso-central-duplo-lumen",
+    "specifications": [
+      "Tamanho: 4FR/5FR",
+      "Cateter venoso central",
+      "Alta qualidade"
+    ],
+    "description": "Cateter venoso central",
+    "category": "cateteres",
+    "available": true
+  },
+  {
+    "id": "cateter-venoso-central-7fr",
+    "name": "CATETER VENOSO CENTRAL 7FR",
+    "slug": "cateter-venoso-central-7fr",
+    "image": "/valores-black/acessorios/cateter-venoso-central-7fr.webp",
+    "price_original": 152.25,
+    "price_promotional": 106.58,
+    "discount_percentage": 30,
+    "url": "https://www.rzvet.com.br/cateter-venoso-central-duplo-lumen?variant_id=643",
+    "specifications": [
+      "Tamanho: 7FR",
+      "Cateter venoso central",
+      "Alta qualidade"
+    ],
+    "description": "Cateter venoso central",
+    "category": "cateteres",
+    "available": true
+  },
+  {
+    "id": "reanimador-manual-ambu",
+    "name": "REANIMADOR MANUAL AMBU",
+    "slug": "reanimador-manual-ambu",
+    "image": "/valores-black/acessorios/reanimador-manual-ambu.webp",
+    "price_original": 231.0,
+    "price_promotional": 162.75,
+    "discount_percentage": 29,
+    "url": "https://www.rzvet.com.br/reanimador-manual-ambu-infantil-pediatrico-ou-adulto-de-pvc",
+    "specifications": [
+      "Reanimador manual",
+      "Marca: AMBU",
+      "Para emergências"
+    ],
+    "description": "Reanimador manual AMBU",
+    "category": "reanimadores",
+    "available": true
+  },
+  {
+    "id": "kit-cabo-ecg-03-vias-03-garras",
+    "name": "KIT CABO ECG 03 VIAS + 03 GARRAS",
+    "slug": "kit-cabo-ecg-03-vias-03-garras",
+    "image": "/valores-black/acessorios/kit-cabo-ecg-03-vias-03-garras.webp",
+    "price_original": 420.0,
+    "price_promotional": 299.25,
+    "discount_percentage": 29,
+    "url": "https://www.rzvet.com.br/equipamentos/cabo-ecg-03-vias-tipo-pino-banana-03-garras-universais",
+    "specifications": [
+      "03 vias",
+      "03 garras",
+      "Kit completo ECG"
+    ],
+    "description": "Kit cabo ECG com 3 vias e 3 garras",
+    "category": "kits",
+    "available": true
+  },
+  {
+    "id": "canula-gato-no03-3-5kg",
+    "name": "CÂNULA GATO Nº 03 3,0 A 5,0 KG",
+    "slug": "canula-gato-no03-3-5kg",
+    "image": "/valores-black/acessorios/canula-gato-no03-3-5kg.webp",
+    "price_original": 115.0,
+    "price_promotional": 86.63,
+    "discount_percentage": 25,
+    "url": "https://www.rzvet.com.br/acessorios/canula-de-intubacao-para-gatos",
+    "specifications": [
+      "Nº 03",
+      "Para gatos 3,0 a 5,0 kg",
+      "Cânula veterinária"
+    ],
+    "description": "Cânula para gatos",
+    "category": "canulas",
+    "available": true
+  },
+  {
+    "id": "canula-coelho-no02-no03",
+    "name": "CÂNULA COELHO Nº 02/Nº 03",
+    "slug": "canula-coelho-no02-no03",
+    "image": "/valores-black/acessorios/canula-coelho-no02-no03.webp",
+    "price_original": 115.0,
+    "price_promotional": 86.63,
+    "discount_percentage": 25,
+    "url": "https://www.rzvet.com.br/acessorios/canula-de-intubacao-para-coelhos",
+    "specifications": [
+      "Nº 02/Nº 03",
+      "Para coelhos",
+      "Cânula veterinária"
+    ],
+    "description": "Cânula para coelhos",
+    "category": "canulas",
+    "available": true
+  },
+  {
+    "id": "atadura-elastica-5cm",
+    "name": "ATADURA ELÁSTICA - 5CM",
+    "slug": "atadura-elastica-5cm",
+    "image": "/valores-black/acessorios/atadura-elastica-5cm.webp",
+    "price_original": 13.65,
+    "price_promotional": 10.94,
+    "discount_percentage": 20,
+    "url": "https://www.rzvet.com.br/atadura-elastica-com-patas-varias-cores-5cm-x-4-5metros",
+    "specifications": [
+      "Largura: 5CM",
+      "Material: Elástico",
+      "Atadura veterinária"
+    ],
+    "description": "Atadura elástica 5cm",
+    "category": "ataduras",
+    "available": true
+  },
+  {
+    "id": "atadura-elastica-10cm",
+    "name": "ATADURA ELÁSTICA - 10CM",
+    "slug": "atadura-elastica-10cm",
+    "image": "/valores-black/acessorios/atadura-elastica-10cm.webp",
+    "price_original": 15.75,
+    "price_promotional": 12.91,
+    "discount_percentage": 18,
+    "url": "https://www.rzvet.com.br/atadura-elastica-varias-cores-10cm-x-4-5metros",
+    "specifications": [
+      "Largura: 10CM",
+      "Material: Elástico",
+      "Atadura veterinária"
+    ],
+    "description": "Atadura elástica 10cm",
+    "category": "ataduras",
+    "available": true
+  }
+]
+

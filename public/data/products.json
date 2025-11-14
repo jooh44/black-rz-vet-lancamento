@@ -1,0 +1,207 @@
+[
+  {
+    "id": "monitor-rm1200",
+    "name": "Monitor RM1200",
+    "slug": "monitor-rm1200",
+    "image": "/valores-black/monitor-rm1200.webp",
+    "price_original": 7950.00,
+    "price_promotional": 6360.00,
+    "discount_percentage": 20,
+    "url": "https://www.rzvet.com.br/monitor-multiparametrico-rm1200",
+    "specifications": [
+      "Tela 12.1 polegadas",
+      "Bateria interna",
+      "Portátil",
+      "Multiparamétrico"
+    ],
+    "description": "Monitor multiparamétrico portátil de alta qualidade",
+    "available": true
+  },
+  {
+    "id": "aparelho-anestesia-vp1000",
+    "name": "Aparelho de Anestesia VP1000",
+    "slug": "aparelho-anestesia-vp1000",
+    "image": "/valores-black/aparelho-anestesia-vp1000.png",
+    "price_original": 9086.00,
+    "price_promotional": 7723.10,
+    "discount_percentage": 15,
+    "url": "https://www.rzvet.com.br/aparelho-de-anestesia-vt1000m-ultra-portatil-3-2kg",
+    "specifications": [
+      "Vaporizador de precisão",
+      "Sistema de segurança avançado",
+      "Interface intuitiva"
+    ],
+    "description": "Aparelho de anestesia veterinária de última geração",
+    "available": true
+  },
+  {
+    "id": "monitor-rm-700",
+    "name": "Monitor RM-700",
+    "slug": "monitor-rm-700",
+    "image": "/valores-black/monitor-rm-700.webp",
+    "price_original": 6950.00,
+    "price_promotional": 5560.00,
+    "discount_percentage": 20,
+    "url": "https://www.rzvet.com.br/monitor-multiparametrico-mr700-vet-basico",
+    "specifications": [
+      "Tela 10.4 polegadas",
+      "Leve e portátil",
+      "Alta precisão"
+    ],
+    "description": "Monitor multiparamétrico compacto",
+    "available": true
+  },
+  {
+    "id": "monitor-re700",
+    "name": "Bomba de Equipo RE700",
+    "slug": "monitor-re700",
+    "image": "/valores-black/monitor-re700.webp",
+    "price_original": 4100.00,
+    "price_promotional": 3608.00,
+    "discount_percentage": 12,
+    "url": "https://www.rzvet.com.br/bomba-equipo-universal-re700vet",
+    "specifications": [
+      "Bomba de infusão",
+      "Precisão de fluxo",
+      "Fácil operação"
+    ],
+    "description": "Bomba de equipo para infusão de fluidos",
+    "available": true
+  },
+  {
+    "id": "monitor-portatil-r1000",
+    "name": "Monitor Portátil R1000",
+    "slug": "monitor-portatil-r1000",
+    "image": "/valores-black/monitor-portatil-r1000.webp",
+    "price_original": 4950.00,
+    "price_promotional": 3000.00,
+    "discount_percentage": 39,
+    "url": "https://www.rzvet.com.br/monitor-multiparametrico-portatil-r1000",
+    "specifications": [
+      "Ultra portátil",
+      "Bateria de longa duração",
+      "Design compacto"
+    ],
+    "description": "Monitor portátil para uso em campo",
+    "available": true
+  },
+  {
+    "id": "monitor-portatil-r200",
+    "name": "Monitor Portátil R200",
+    "slug": "monitor-portatil-r200",
+    "image": "/valores-black/monitor-portatil-r200.webp",
+    "price_original": 7000.00,
+    "price_promotional": 4950.00,
+    "discount_percentage": 29,
+    "url": "https://www.rzvet.com.br/rz-200vet-oxicapnografo-veterinario-portatil-maistream",
+    "specifications": [
+      "Leve e compacto",
+      "Ideal para emergências",
+      "Alta confiabilidade"
+    ],
+    "description": "Monitor portátil de entrada",
+    "available": true
+  },
+  {
+    "id": "bomba-de-seringa-m200a",
+    "name": "Bomba de Seringa M200A",
+    "slug": "bomba-de-seringa-m200a",
+    "image": "/valores-black/bomba-de-seringa-m200a.webp",
+    "price_original": 4300.00,
+    "price_promotional": 2900.00,
+    "discount_percentage": 32,
+    "url": "https://www.rzvet.com.br/bomba-de-seringa-universal-modelo-m200a-marca-comen",
+    "specifications": [
+      "Precisão micro",
+      "Múltiplas velocidades",
+      "Sistema de segurança"
+    ],
+    "description": "Bomba de infusão de alta precisão",
+    "available": true
+  },
+  {
+    "id": "kit-4-bomba-de-seringa",
+    "name": "Kit 4 Bomba de Seringa",
+    "slug": "kit-4-bomba-de-seringa",
+    "image": "/valores-black/kit-4-bomba-de-seringa.webp",
+    "price_original": 21800.00,
+    "price_promotional": 13072.00,
+    "discount_percentage": 40,
+    "url": "https://www.rzvet.com.br/kit-com-04-bomba-de-seringa-modelo-m200a-workstation-marca-comen",
+    "specifications": [
+      "4 bombas em um kit",
+      "Economia especial",
+      "Ideal para clínicas"
+    ],
+    "description": "Kit completo com 4 bombas de infusão",
+    "available": true
+  },
+  {
+    "id": "vent-pet-2.0",
+    "name": "Vent-Pet 2.0",
+    "slug": "vent-pet-2.0",
+    "image": "/valores-black/vent-pet-2.0.png",
+    "price_original": 15000.00,
+    "price_promotional": 10500.00,
+    "discount_percentage": 30,
+    "url": "https://www.rzvet.com.br/ventilador-mecanico-veterinario-ventpet-plus-2-0",
+    "specifications": [
+      "Ventilador mecânico",
+      "Para pequenos animais",
+      "Tecnologia avançada"
+    ],
+    "description": "Ventilador mecânico veterinário",
+    "available": true
+  },
+  {
+    "id": "central-de-controle-workstation",
+    "name": "Central de Controle Workstation",
+    "slug": "central-de-controle-workstation",
+    "image": "/products-images/Equipamentos/WORKSTATION.jpg",
+    "price_original": 7000.00,
+    "price_promotional": 3500.00,
+    "discount_percentage": 50,
+    "url": "https://www.rzvet.com.br/equipamentos/bombas-de-infusao-veterinaria/workstation-central-de-controle-m200a-ewm200a",
+    "specifications": [
+      "Sistema integrado",
+      "Múltiplos parâmetros",
+      "Interface profissional"
+    ],
+    "description": "Central de monitoramento completa",
+    "available": true
+  },
+  {
+    "id": "neurostim",
+    "name": "Neurostim",
+    "slug": "neurostim",
+    "image": "/valores-black/neurostim.webp",
+    "price_original": 8500.00,
+    "price_promotional": 6545.00,
+    "discount_percentage": 23,
+    "url": "https://www.rzvet.com.br/neurostim-vet-pro-neurolocalizador-veterinario",
+    "specifications": [
+      "Estimulação neural",
+      "Precisão cirúrgica",
+      "Portátil"
+    ],
+    "description": "Neuroestimulador para cirurgia",
+    "available": true
+  },
+  {
+    "id": "oximetro",
+    "name": "Oxímetro",
+    "slug": "oximetro",
+    "image": "/valores-black/oximetro.webp",
+    "price_original": 1104.25,
+    "price_promotional": 790.00,
+    "discount_percentage": 28,
+    "url": "https://www.rzvet.com.br/monitor-de-oximetria-r40vet",
+    "specifications": [
+      "Medição precisa",
+      "Fácil de usar",
+      "Confiável"
+    ],
+    "description": "Oxímetro de pulso veterinário",
+    "available": true
+  }
+]

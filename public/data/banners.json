@@ -1,0 +1,39 @@
+{
+  "heroBanners": [
+    {
+      "id": "hero-banner-usg",
+      "imageDesktop": "/banners/desktop/USG BANNER DESK.webp",
+      "imageMobile": "/banners/mobile/USG BANNER MOBILE.webp",
+      "alt": "Aparelho de Ultrassom em promoção - Black Days RZ VET 2025",
+      "link": "https://www.rzvet.com.br/ultrassom-veterinario/ultrassom-wi-fiusb-3-em-1-veterinario-linear-convexo-e-doppler",
+      "order": 1,
+      "active": true
+    },
+    {
+      "id": "hero-banner-rm1200",
+      "imageDesktop": "/banners/desktop/BANNER RM1200 DESK.webp",
+      "imageMobile": "/banners/mobile/BANER RM1200 MOBILE.webp",
+      "alt": "Monitor RM1200 em promoção - Black Days RZ VET 2025",
+      "link": "https://www.rzvet.com.br/monitor-multiparametrico-rm1200",
+      "order": 2,
+      "active": true
+    },
+    {
+      "id": "hero-banner-rm700",
+      "imageDesktop": "/banners/desktop/BANNER RM700 DESK.webp",
+      "imageMobile": "/banners/mobile/BANER RM700MOBILE.webp",
+      "alt": "Monitor RM700 em promoção - Black Days RZ VET 2025",
+      "link": "https://www.rzvet.com.br/monitor-multiparametrico-mr700-vet-basico",
+      "order": 3,
+      "active": true
+    }
+  ],
+  "middleBanner": {
+    "id": "middle-banner-1",
+    "image": "/banners/middle/middle-banner-1.jpg",
+    "alt": "Confira também nossos acessórios em promoção",
+    "link": "#accessories-section",
+    "active": true
+  }
+}
+

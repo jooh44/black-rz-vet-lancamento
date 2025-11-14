@@ -8,7 +8,8 @@ function start() {
   const port = config.port;
 
   app.listen(port, () => {
-    logger.info(`API de leads executando em http://localhost:${port}`);
+    logger.info(`Servidor de arquivos estáticos executando em http://localhost:${port}`);
+    logger.info(`Acesse: http://localhost:${port}`);
   });
 }
 
