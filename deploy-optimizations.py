@@ -139,13 +139,30 @@ def main():
             print("[AVISO] Continuando sem atualizar Nginx...")
             # Não retornar, continuar com o deploy
         
-        # 4. Reiniciar servidor Node.js (se estiver rodando via PM2 ou systemd)
+        # 4. Copiar arquivos para diretório do PM2 (se diferente)
+        print("[*] Verificando diretorio do PM2...")
+        pm2_info = execute_command(client, "pm2 info black-friday-rz-vet 2>/dev/null | grep 'exec cwd' | awk '{print $4}' || echo ''")
+        if pm2_info and pm2_info.strip() and pm2_info.strip() != REMOTE_DIR:
+            pm2_dir = pm2_info.strip()
+            print(f"[*] PM2 rodando de {pm2_dir}, copiando arquivos...")
+            # Copiar arquivos atualizados
+            execute_command(client, f"cp {REMOTE_DIR}/server/app.js {pm2_dir}/server/app.js")
+            execute_command(client, f"cp -r {REMOTE_DIR}/public/products-images {pm2_dir}/public/")
+            execute_command(client, f"cp {REMOTE_DIR}/public/data/products.json {pm2_dir}/public/data/products.json")
+            execute_command(client, f"cp {REMOTE_DIR}/public/index.html {pm2_dir}/public/index.html")
+            execute_command(client, f"cp {REMOTE_DIR}/public/promocoes.html {pm2_dir}/public/promocoes.html")
+            execute_command(client, f"cp {REMOTE_DIR}/public/promocoes.js {pm2_dir}/public/promocoes.js")
+            execute_command(client, f"cp {REMOTE_DIR}/public/app.js {pm2_dir}/public/app.js")
+            execute_command(client, f"cp {REMOTE_DIR}/public/styles.css {pm2_dir}/public/styles.css")
+            print("[OK] Arquivos copiados para diretorio do PM2")
+        
+        # 5. Reiniciar servidor Node.js (se estiver rodando via PM2 ou systemd)
         print("[*] Verificando servidor Node.js...")
         # Verificar se está rodando via PM2
         pm2_check = execute_command(client, "pm2 list 2>/dev/null | grep -q 'black-friday' && echo 'running' || echo 'not-running'")
         if pm2_check and 'running' in pm2_check:
             print("[*] Reiniciando aplicacao PM2...")
-            execute_command(client, "cd /var/www/html && pm2 restart black-friday || pm2 restart all")
+            execute_command(client, "pm2 restart black-friday-rz-vet || pm2 restart all")
         else:
             # Verificar se está rodando via systemd
             systemd_check = execute_command(client, "systemctl is-active --quiet node-black-friday && echo 'running' || echo 'not-running'")
