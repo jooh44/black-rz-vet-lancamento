@@ -19,6 +19,26 @@
   box-sizing: border-box;
 }
 
+/* ==== OTIMIZAÇÕES GLOBAIS DE PERFORMANCE MOBILE ==== */
+button, 
+a,
+input[type="submit"],
+input[type="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(248, 113, 113, 0.3);
+}
+
+/* Prevenir scroll horizontal em todos os elementos */
+html, body, .page {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Otimizar scroll em iOS */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
 ::selection {
   background: rgba(220, 38, 38, 0.5);
   color: var(--text);
@@ -53,6 +73,9 @@ body {
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
+  overscroll-behavior-y: contain;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (max-width: 767px) {
@@ -130,6 +153,8 @@ a:focus-visible {
 
 .brand-logo {
   height: 48px;
+  width: auto;
+  object-fit: contain;
   transition: transform 0.2s ease;
 }
 
@@ -152,11 +177,13 @@ a:focus-visible {
   color: var(--text-muted);
   text-decoration: none;
   border-radius: 8px;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.2s ease, transform 0.2s ease;
   position: relative;
   overflow: hidden;
   letter-spacing: 0.02em;
   z-index: 1;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(248, 113, 113, 0.3);
 }
 
 .header-nav__link::before {
@@ -225,6 +252,8 @@ a:focus-visible {
 
   .brand-logo {
     height: 40px;
+    width: auto;
+    object-fit: contain;
   }
 
   .header-nav {
@@ -249,8 +278,9 @@ a:focus-visible {
     display: flex;
     align-items: center;
     justify-content: center;
-    touch-action: manipulation; /* Melhorar resposta ao toque */
+    touch-action: manipulation;
     -webkit-tap-highlight-color: rgba(248, 113, 113, 0.3);
+    will-change: transform;
   }
 
   .header-nav__link:active {
@@ -304,9 +334,10 @@ a:focus-visible {
     justify-content: center;
     background: rgba(11, 11, 13, 0.92);
     border: 1px solid rgba(248, 113, 113, 0.25);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     touch-action: manipulation;
     -webkit-tap-highlight-color: rgba(248, 113, 113, 0.3);
+    will-change: transform;
     position: relative;
     overflow: hidden;
   }
@@ -436,6 +467,8 @@ a:focus-visible {
 
 .hero-logo {
   width: clamp(160px, 30vw, 220px);
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 
@@ -670,6 +703,8 @@ a:focus-visible {
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3), inset 0 0 20px rgba(248, 113, 113, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .countdown__unit:hover {
@@ -840,6 +875,8 @@ a:focus-visible {
   letter-spacing: 0.02em;
   transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   pointer-events: none;
+  will-change: transform;
+  touch-action: manipulation;
 }
 
 .inline-option input:checked + span {
@@ -880,6 +917,9 @@ a:focus-visible {
   box-shadow: 0 18px 40px rgba(220, 38, 38, 0.35);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(248, 113, 113, 0.3);
+  will-change: transform;
 }
 
 .submit-button:hover,
@@ -921,6 +961,8 @@ a:focus-visible {
   display: grid;
   gap: 1.5rem;
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
 }
 
 .preview-grid {
@@ -1284,6 +1326,8 @@ a:focus-visible {
 /* Products Section */
 .products-section {
   margin: clamp(2.5rem, 5vw, 4rem) 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 .products-grid {
@@ -1459,6 +1503,9 @@ a:focus-visible {
   text-decoration: none;
   display: block;
   width: 100%;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(248, 113, 113, 0.3);
+  will-change: transform;
 }
 
 .product-card__button:hover,
@@ -1525,6 +1572,8 @@ a:focus-visible {
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .hero-carousel__container {
@@ -1537,6 +1586,7 @@ a:focus-visible {
   position: relative;
   width: 100%;
   height: 100%;
+  will-change: contents;
 }
 
 .hero-carousel__slide {
@@ -1548,6 +1598,8 @@ a:focus-visible {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   pointer-events: none;
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 .hero-carousel__slide--active {
@@ -1669,6 +1721,9 @@ a:focus-visible {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(248, 113, 113, 0.3);
+  will-change: transform;
 }
 
 .hero-carousel__prev {
@@ -1793,6 +1848,8 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .ticker-strip--diagonal-1 {
@@ -2009,6 +2066,10 @@ a:focus-visible {
   text-decoration: none;
   border: 2px solid rgba(248, 113, 113, 0.4);
   backdrop-filter: blur(10px);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(248, 113, 113, 0.3);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .whatsapp-float:hover,
