@@ -586,7 +586,6 @@ async function handleSubmit(event) {
     });
     showStatus("Obrigado! Seu nome está na lista.", { isError: false });
   } catch (error) {
-    console.error("Erro ao enviar lead", error);
     let message = "Ops! Algo deu errado. Tente novamente.";
     if (error instanceof TypeError && error.message === "Failed to fetch") {
       message = "Não foi possível conectar à API. Verifique se o servidor está rodando.";

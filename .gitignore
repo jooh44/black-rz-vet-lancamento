@@ -1,20 +1,62 @@
-node_modules
-.env
+# Dependencies
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-.DS_Store
-*.pem
-*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
 .idea/
 .vscode/
-data/leads.json
+*.swp
+*.swo
+*~
+
+# Sistema operacional e arquivos temporários do usuário
+AppData/
+Desktop/
+Documents/
+Downloads/
+*.log
+*.backup
+*.bak
+.wdm/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
 data/sheets-debug.log
 data/sheets-errors.log
+
+# Data files (não commitar dados sensíveis)
+data/leads.json
+
+# Build outputs
 coverage/
 dist/
 build/
 .tmp/
-start.sh
+
+# Credenciais e arquivos sensíveis
+*.pem
+*.key
+*.crt
 ssh_run.py
+
+# Arquivos temporários
+start.sh
+*.backup
+*.bak
+
+# Arquivos de imagem grandes (se necessário)
+# *.png
+# *.jpg
+# *.jpeg

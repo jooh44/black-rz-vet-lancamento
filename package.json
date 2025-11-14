@@ -1,27 +1,28 @@
 {
   "name": "black-friday-2025",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "server/index.js",
+  "description": "Página de promoções Black Days RZ VET - Landing page com produtos em promoção",
+  "keywords": ["black-friday", "rz-vet", "promocoes", "veterinario"],
+  "author": "RZ Equipamentos",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jooh44/black-rz-vet-lancamento.git"
+  },
   "scripts": {
     "dev": "nodemon server/index.js",
     "start": "node server/index.js",
-    "test": "jest",
-    "check:sheets": "node server/scripts/checkSheets.js"
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
     "jest": "^29.7.0",
     "nodemon": "^3.1.10",
     "pino-pretty": "^11.2.2"
   },
   "dependencies": {
-    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "googleapis": "^164.1.0",
     "pino": "^9.4.0"
   }
 }
