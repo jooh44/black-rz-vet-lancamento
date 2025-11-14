@@ -416,7 +416,7 @@ function handleImageError(imgElement) {
 }
 
 // Criar card de produto
-function createProductCard(product, isAccessory = false) {
+function createProductCard(product, isAccessory = false, index = 0) {
   const card = document.createElement("article");
   card.className = "product-card";
   card.setAttribute("role", "listitem");
@@ -441,6 +441,9 @@ function createProductCard(product, isAccessory = false) {
     : "";
 
   const imagePath = getProductImagePath(product, isAccessory);
+  
+  // Primeiros 3 cards de cada seção usam eager loading para carregar imediatamente
+  const shouldEagerLoad = index < 3;
 
   card.innerHTML = `
     <div class="product-card__image-wrapper">
@@ -448,11 +451,11 @@ function createProductCard(product, isAccessory = false) {
         src="${imagePath}" 
         alt="${product.name}" 
         class="product-card__image"
-        loading="lazy"
+        loading="${shouldEagerLoad ? 'eager' : 'lazy'}"
         decoding="async"
         width="400"
         height="300"
-        fetchpriority="auto"
+        fetchpriority="${shouldEagerLoad ? 'high' : 'auto'}"
       />
       <div class="product-card__image-placeholder" style="display: none;" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -529,8 +532,8 @@ async function loadProducts() {
     
     // Renderizar primeiro batch imediatamente
     const initialProducts = availableProducts.slice(0, initialBatchSize);
-    initialProducts.forEach((product) => {
-      const card = createProductCard(product, false);
+    initialProducts.forEach((product, index) => {
+      const card = createProductCard(product, false, index);
       productsGrid.appendChild(card);
     });
 
@@ -540,8 +543,9 @@ async function loadProducts() {
 
     function renderNextBatch() {
       const batch = remainingProducts.slice(currentIndex, currentIndex + batchSize);
-      batch.forEach((product) => {
-        const card = createProductCard(product, false);
+      batch.forEach((product, batchIndex) => {
+        const globalIndex = initialBatchSize + currentIndex + batchIndex;
+        const card = createProductCard(product, false, globalIndex);
         productsGrid.appendChild(card);
       });
       currentIndex += batchSize;
@@ -679,8 +683,8 @@ async function loadAccessories() {
     
     // Renderizar primeiro batch imediatamente
     const initialAccessories = availableAccessories.slice(0, initialBatchSize);
-    initialAccessories.forEach((accessory) => {
-      const card = createProductCard(accessory, true);
+    initialAccessories.forEach((accessory, index) => {
+      const card = createProductCard(accessory, true, index);
       accessoriesGrid.appendChild(card);
     });
 
@@ -690,8 +694,9 @@ async function loadAccessories() {
 
     function renderNextBatch() {
       const batch = remainingAccessories.slice(currentIndex, currentIndex + batchSize);
-      batch.forEach((accessory) => {
-        const card = createProductCard(accessory, true);
+      batch.forEach((accessory, batchIndex) => {
+        const globalIndex = initialBatchSize + currentIndex + batchIndex;
+        const card = createProductCard(accessory, true, globalIndex);
         accessoriesGrid.appendChild(card);
       });
       currentIndex += batchSize;
