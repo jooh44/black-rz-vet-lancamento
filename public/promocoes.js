@@ -4,6 +4,25 @@ const countdownControllers = new WeakMap();
 
 const COUNTDOWN_TIME_ZONE = "America/Sao_Paulo";
 
+// Função auxiliar para detectar mobile de forma mais confiável (definida no início)
+function isMobileDevice() {
+  // Usar matchMedia como método principal (mais confiável)
+  if (window.matchMedia && window.matchMedia("(max-width: 767px)").matches) {
+    return true;
+  }
+  // Fallback para window.innerWidth
+  if (window.innerWidth && window.innerWidth < 768) {
+    return true;
+  }
+  // Fallback adicional para userAgent (útil em casos extremos)
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase())) {
+    // Mas só retornar true se realmente for mobile (não tablet em modo desktop)
+    return window.innerWidth < 768;
+  }
+  return false;
+}
+
 // Smooth scroll e destaque de navegação ativa
 (function initSmoothScroll() {
   const navLinks = document.querySelectorAll('.header-nav__link');
@@ -13,7 +32,8 @@ const COUNTDOWN_TIME_ZONE = "America/Sao_Paulo";
   const mobileNavBottom = document.querySelector('.mobile-nav-bottom');
   const headerNav = document.querySelector('.header-nav');
   const heroCarousel = document.querySelector('.hero-carousel');
-  const isMobile = () => window.innerWidth <= 768;
+  // Usar função auxiliar global para consistência
+  const isMobile = () => isMobileDevice();
   
   // Função para detectar se está na hero section
   function isInHeroSection() {
@@ -697,17 +717,28 @@ let carouselState = {
 };
 
 // Carregar e renderizar banners hero
-async function loadHeroBanners() {
+async function loadHeroBanners(retryCount = 0) {
+  const maxRetries = 3;
+  const retryDelay = 1000; // 1 segundo
+  
   try {
-    const response = await fetch("/data/banners.json");
+    const response = await fetch("/data/banners.json", {
+      cache: "no-cache", // Evitar cache problemático
+      headers: {
+        "Cache-Control": "no-cache"
+      }
+    });
+    
     if (!response.ok) {
-      throw new Error("Falha ao carregar banners");
+      throw new Error(`Falha ao carregar banners: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
     const activeBanners = data.heroBanners.filter((b) => b.active).sort((a, b) => a.order - b.order);
 
     if (activeBanners.length === 0) {
+      console.warn("[Banners] Nenhum banner ativo encontrado");
+      showBannerFallback();
       return;
     }
 
@@ -715,8 +746,40 @@ async function loadHeroBanners() {
     renderHeroCarousel(activeBanners);
     initCarousel();
   } catch (error) {
-    // Silenciar erro de carregamento de banners em produção
+    console.error("[Banners] Erro ao carregar banners:", error);
+    
+    // Tentar novamente se ainda houver tentativas
+    if (retryCount < maxRetries) {
+      console.log(`[Banners] Tentando novamente (${retryCount + 1}/${maxRetries})...`);
+      setTimeout(() => {
+        loadHeroBanners(retryCount + 1);
+      }, retryDelay * (retryCount + 1)); // Backoff exponencial
+    } else {
+      // Se todas as tentativas falharam, mostrar fallback
+      console.error("[Banners] Todas as tentativas falharam. Mostrando fallback.");
+      showBannerFallback();
+    }
   }
+}
+
+// Função para mostrar fallback visual se banners não carregarem
+function showBannerFallback() {
+  const slidesContainer = document.querySelector(".hero-carousel__slides");
+  if (!slidesContainer) return;
+  
+  // Verificar se já há conteúdo (não sobrescrever se já carregou)
+  if (slidesContainer.children.length > 0) return;
+  
+  slidesContainer.innerHTML = `
+    <div class="hero-carousel__slide hero-carousel__slide--active" role="listitem">
+      <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; padding: 2rem;">
+        <div style="text-align: center;">
+          <h2 style="margin: 0 0 1rem 0; font-size: 1.5rem;">Black Days RZ VET 2025</h2>
+          <p style="margin: 0; font-size: 1rem; opacity: 0.9;">As melhores promoções em equipamentos veterinários</p>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 // Renderizar carrossel hero
@@ -743,11 +806,16 @@ function renderHeroCarousel(banners) {
     const link = banner.link ? `<a href="${banner.link}" class="hero-carousel__slide-link">` : "";
     const linkClose = banner.link ? "</a>" : "";
 
-    // Detectar tamanho da tela e usar imagem correta
+    // Detectar tamanho da tela e usar imagem correta (usar função auxiliar)
     const imageDesktop = banner.imageDesktop || banner.image;
     const imageMobile = banner.imageMobile || banner.image;
-    const isMobile = window.innerWidth < 768;
+    const isMobile = isMobileDevice(); // Usar função auxiliar mais confiável
     const imageSrc = isMobile ? imageMobile : imageDesktop;
+    
+    // Garantir que nunca use desktop no mobile
+    if (isMobile && !imageMobile) {
+      console.warn(`[Banners] Banner ${banner.id} não tem imagem mobile, usando desktop como fallback`);
+    }
     
     slide.innerHTML = `
       ${link}
@@ -919,7 +987,7 @@ function stopAutoplay() {
 // Função para atualizar imagens dos banners ao redimensionar
 function updateBannerImagesOnResize() {
   const bannerImages = document.querySelectorAll(".hero-carousel__slide-image");
-  const isMobile = window.innerWidth < 768;
+  const isMobile = isMobileDevice(); // Usar função auxiliar mais confiável
   
   bannerImages.forEach((img) => {
     const desktopSrc = img.dataset.desktop;
@@ -927,42 +995,58 @@ function updateBannerImagesOnResize() {
     
     if (!desktopSrc || !mobileSrc) return;
     
+    // CRÍTICO: Garantir que mobile sempre use mobile, desktop sempre use desktop
     const correctSrc = isMobile ? mobileSrc : desktopSrc;
     const currentSrc = img.getAttribute("src");
     
     // Só atualiza se a imagem atual não for a correta
+    // E garantir que nunca troque mobile por desktop ou vice-versa incorretamente
     if (currentSrc !== correctSrc) {
-      img.src = correctSrc;
+      // Verificação adicional de segurança
+      const isCurrentlyMobile = currentSrc === mobileSrc;
+      const shouldBeMobile = isMobile;
+      
+      // Só atualizar se realmente precisar (evitar loops)
+      if (isCurrentlyMobile !== shouldBeMobile || currentSrc !== correctSrc) {
+        img.src = correctSrc;
+      }
     }
   });
 }
 
-// Inicializar quando o DOM estiver pronto
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    initializeCountdowns();
-    loadHeroBanners();
-    loadProducts();
-    loadAccessories();
-    
-    // Listener para redimensionamento
-    let resizeTimeout;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(updateBannerImagesOnResize, 100);
-    });
-  });
-} else {
+// Função de inicialização centralizada
+function initializeApp() {
   initializeCountdowns();
   loadHeroBanners();
   loadProducts();
   loadAccessories();
   
-  // Listener para redimensionamento
+  // Listener para redimensionamento com debounce
   let resizeTimeout;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(updateBannerImagesOnResize, 100);
+    resizeTimeout = setTimeout(() => {
+      updateBannerImagesOnResize();
+    }, 150);
   });
+  
+  // Listener adicional para mudança de orientação (importante para mobile)
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+      updateBannerImagesOnResize();
+    }, 200);
+  });
+}
+
+// Inicializar quando o DOM estiver pronto
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeApp);
+} else {
+  // DOM já está pronto, mas aguardar um frame para garantir que tudo está renderizado
+  if (window.requestAnimationFrame) {
+    window.requestAnimationFrame(initializeApp);
+  } else {
+    setTimeout(initializeApp, 0);
+  }
 }
 
